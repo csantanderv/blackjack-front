@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="508px" height="508px" viewBox="0 0 508 508" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>bank-svgrepo-com</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bank-svgrepo-com" fill-rule="nonzero">
+            <circle id="Oval" fill="#FFD05B" cx="254" cy="254" r="254"></circle>
+            <g id="Group" transform="translate(99.000000, 76.000000)" fill="#FFFFFF">
+                <rect id="Rectangle" x="35.8" y="106.4" width="46" height="169.2"></rect>
+                <rect id="Rectangle" x="132.2" y="108.4" width="46" height="169.2"></rect>
+                <rect id="Rectangle" x="228.6" y="108.4" width="46" height="169.2"></rect>
+                <rect id="Rectangle" x="0.2" y="269.2" width="309.6" height="30.4"></rect>
+                <polygon id="Path" points="309.8 72 155.8 0.8 0.6 72 0.6 111.2 309.8 111.2"></polygon>
+            </g>
+            <g id="Group" transform="translate(123.000000, 103.000000)" fill="#E6E9EE">
+                <polygon id="Path" points="0.2 60.2 0.2 60.2 131.8 0.2 261.8 59.8 261.8 60.2"></polygon>
+                <path d="M197,84.2 L197,97.4 C197,99.8 199,101.8 201.4,101.8 L253.8,101.8 C256.2,101.8 258.2,99.8 258.2,97.4 L258.2,84.2 L197,84.2 Z" id="Path"></path>
+                <path d="M100.6,84.2 L100.6,97.4 C100.6,99.8 102.6,101.8 105,101.8 L157.4,101.8 C159.8,101.8 161.8,99.8 161.8,97.4 L161.8,84.2 L100.6,84.2 Z" id="Path"></path>
+                <path d="M4.2,84.2 L4.2,97.4 C4.2,99.8 6.2,101.8 8.6,101.8 L61,101.8 C63.4,101.8 65.4,99.8 65.4,97.4 L65.4,84.2 L4.2,84.2 Z" id="Path"></path>
+                <path d="M197,242.2 L197,229 C197,226.6 199,224.6 201.4,224.6 L253.8,224.6 C256.2,224.6 258.2,226.6 258.2,229 L258.2,242.2 L197,242.2 Z" id="Path"></path>
+                <path d="M100.6,242.2 L100.6,229 C100.6,226.6 102.6,224.6 105,224.6 L157.4,224.6 C159.8,224.6 161.8,226.6 161.8,229 L161.8,242.2 L100.6,242.2 Z" id="Path"></path>
+                <path d="M4.2,242.2 L4.2,229 C4.2,226.6 6.2,224.6 8.6,224.6 L61,224.6 C63.4,224.6 65.4,226.6 65.4,229 L65.4,242.2 L4.2,242.2 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>

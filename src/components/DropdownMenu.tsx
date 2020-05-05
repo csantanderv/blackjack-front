@@ -4,7 +4,7 @@ import { ReactComponent as MenuIcon } from '../assets/svg/menu-icon.svg';
 import DropdownItem from './DropdownItem';
 import '../index.scss';
 
-function DropdownMenu() {
+const DropdownMenu = () => {
   const [activeMenu, setActiveMenu] = useState('main');
   const [menuHeight, setMenuHeight] = useState(0);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -78,6 +78,6 @@ function DropdownMenu() {
       </CSSTransition>
     </div>
   );
-}
+};
 
 export default DropdownMenu;
