@@ -20,6 +20,10 @@ h2 {
   color: #e4e6eb;
 }
 
+figure {
+  margin: 0 0 0 0;
+}
+
 body {
   margin: 0;
   background: #151616;
@@ -28,68 +32,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.navbar-container {
-  position: fixed;
-  display: flex;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: var(--nav-size);
-  background-color: var(--bg);
-  border-bottom: var(--border);
-
-  img {
-    height: 40px;
-  }
-  .game-info {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    width: 50%;
-    padding: 0 1rem;
-    .player-bank-info {
-      display: flex;
-      flex-direction: column;
-      .player-name {
-        margin: 0;
-        padding: 0px 10px 0px;
-        font-size: 14px;
-        color: green;
-      }
-      .mount-bank {
-        margin: 0;
-        padding: 0px 10px;
-        font-size: 12px;
-      }
-    }
-  }
-}
-
-.navbar {
-  padding: 0 1rem;
-  flex: 1;
-  .navbar-nav {
-    max-width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-}
-
-.nav-item {
-  width: calc(var(--nav-size) * 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-color);
-  text-decoration: none;
-}
-
-.icon-button {
+.icon-button-menu {
   --button-size: calc(var(--nav-size) * 0.5);
   width: var(--button-size);
   height: var(--button-size);
@@ -103,91 +46,18 @@ body {
   transition: filter 300ms;
 }
 
-.icon-button:hover {
+.icon-button-menu:hover {
   filter: brightness(1.2);
 }
 
-.icon-button svg {
+.icon-button-menu svg {
   fill: var(--text-color);
   width: 20px;
   height: 20px;
 }
 
-.dropdown {
-  position: absolute;
-  top: 58px;
-  width: 300px;
-  transform: translateX(-45%);
-  background-color: var(--bg);
-  border: var(--border);
-  border-radius: var(--border-radius);
-  padding: 1rem;
-  overflow: hidden;
-  transition: height var(--speed) ease;
-}
-
-.menu {
-  width: 100%;
-}
-
-.menu-item {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  border-radius: var(--border-radius);
-  transition: background var(--speed);
-  padding: 0.5rem;
-  color: var(--text-color);
-  text-decoration: none;
-}
-
-.menu-item .icon-button {
-  margin-right: 0.5rem;
-}
-
-.menu-item .icon-button:hover {
-  filter: none;
-}
-
-.menu-item:hover {
-  background-color: #525357;
-}
-
 .icon-right {
   margin-left: auto;
-}
-
-.menu-primary-enter {
-  position: absolute;
-  transform: translateX(-110%);
-}
-
-.menu-primary-enter-active {
-  transform: translateX(0%);
-  transition: all var(--speed) ease;
-}
-
-.menu-primary-exit {
-  position: absolute;
-}
-
-.menu-primary-exit-active {
-  transform: translateX(-110%);
-  transition: all var(--speed) ease;
-}
-
-.menu-secondary-enter {
-  transform: translateX(110%);
-}
-
-.menu-secondary-enter-active {
-  transform: translateX(0%);
-  transition: all var(--speed) ease;
-}
-
-.menu-secondary-exit-active {
-  transform: translateX(110%);
-  transition: all var(--speed) ease;
 }
 
 .main-content {
@@ -198,20 +68,6 @@ body {
   justify-content: center;
 }
 
-.icon-coin {
-  height: 60px;
-  border-radius: 100px;
-  box-shadow: 0 5px #999;
-
-  img {
-    height: 59px;
-  }
-
-  :active {
-    box-shadow: 0 2px #666;
-    transform: translateY(4px);
-  }
-}
 
 .item-container {
   margin: 20px 20px 20px 20px;
@@ -221,14 +77,7 @@ body {
   align-items: center;
 }
 
-.bet-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.board-player-container {
-  width: 600px;
+.game-options {
   padding: 20px 0 20px 0;
   background-color: var(--bg);
   border: var(--border);
@@ -239,114 +88,9 @@ body {
   align-items: center;
 }
 
-.hand-bet-container {
-  width: 600px;
+.game-buttons {
   padding: 20px 0 20px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.hand-bet {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80px;
-  width: 80px;
-  border-radius: 100px;
-  background-color: white;
-  box-shadow: 0 5px #999;
-
-  img {
-    height: 60px;
-  }
-
-  :active {
-    box-shadow: 0 2px #666;
-    transform: translateY(4px);
-  }
-}
-
-.card-deck-player {
-  margin: 0 20px 0 -20px;
-  position: relative;
-  top: 0;
-  left: 0;
-}
-
-.card-player-first {
-  position: relative;
-  top: 0;
-  left: 0;
-  border: 1px red solid;
-  height: 200px;
-}
-
-.card-player-second {
-  position: absolute;
-  left: 35px;
-  height: 200px;
-}
-
-.board-container {
-  width: 600px;
-  padding: 20px 0 20px 0;
-  background-color: var(--bg);
-  border: var(--border);
-  border-radius: var(--border-radius);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.player-board {
-  margin-top: 20px;
-  padding: 5px;
-  width: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid green;
-  border-radius: var(--border-radius);
-
-  .player-cards {
-    img {
-      height: 80px;
-    }
-  }
-
-  .player-detail {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: stretch;
-    p {
-      margin-right: 10px;
-      color: white;
-      font-weight: bold;
-      font-size: 12px;
-    }
-    img {
-      padding-top: 10px;
-      height: 15px;
-    }
-  }
-
-  .player-mount {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: baseline;
-
-    img {
-      height: 20px;
-    }
-
-    p {
-      margin: 0px 0px 0px 5px;
-      color: red;
-      font-weight: bold;
-    }
-  }
 }

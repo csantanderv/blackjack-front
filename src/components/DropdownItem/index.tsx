@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from 'react';
-import '../index.scss';
+import '../../index.scss';
+import './style.scss';
 
 type DropdownItemProps = {
   goToMenu?: string;
@@ -19,7 +20,7 @@ const DropdownItem: FC<DropdownItemProps> = (props) => {
       className='menu-item'
       onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}
     >
-      <span className='icon-button'>{props.leftIcon}</span>
+      <span className='icon-button-menu'>{props.leftIcon}</span>
       {props.children}
       <span className='icon-right'>{props.rightIcon}</span>
     </a>

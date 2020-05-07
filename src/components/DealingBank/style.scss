@@ -1,0 +1,24 @@
+.dealing-bank {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+}
+
+.info-mount-bank {
+    display: flex;
+    margin: 20px 0px 0px 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    img {
+        height: 40px;
+    }
+
+    .bank-info {
+        .mount-bank {
+            margin: 0px 0 0 20px;
+            padding-top: 5px;
+        }
+    }
+}

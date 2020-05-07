@@ -1,6 +1,7 @@
 import React, { useState, FC, ReactNode } from 'react';
-import BankIcon from '../assets/svg/bank.svg';
-import PlayerPlayingIcon from '../assets/svg/player-playing.svg';
+import BankIcon from '../../assets/svg/bank.svg';
+import PlayerPlayingIcon from '../../assets/svg/player-playing.svg';
+import './style.scss';
 
 export const Navbar: FC = (props) => {
   return (
@@ -32,7 +33,7 @@ export const NavItem: FC<NavItemProps> = (props) => {
 
   return (
     <li className='nav-item'>
-      <a href='#/' className='icon-button' onClick={() => setOpen(!open)}>
+      <a href='#/' className='icon-button-menu' onClick={() => setOpen(!open)}>
         {props.icon}
       </a>
       {open && props.children}

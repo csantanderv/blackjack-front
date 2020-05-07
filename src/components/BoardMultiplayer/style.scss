@@ -1,0 +1,10 @@
+.board-container {
+    width: 600px;
+    padding: 20px 0 20px 0;
+    background-color: var(--bg);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

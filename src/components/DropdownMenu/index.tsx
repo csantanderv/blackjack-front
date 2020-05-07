@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import { ReactComponent as MenuIcon } from '../assets/svg/menu-icon.svg';
-import DropdownItem from './DropdownItem';
-import '../index.scss';
+import { ReactComponent as MenuIcon } from '../../assets/svg/menu-icon.svg';
+import DropdownItem from '../DropdownItem';
+import '../../index.scss';
+import './style.scss';
 
 const DropdownMenu = () => {
   const [activeMenu, setActiveMenu] = useState('main');

@@ -1,0 +1,53 @@
+.player-board {
+    margin-top: 20px;
+    padding: 5px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid green;
+    border-radius: var(--border-radius);
+
+    .player-cards {
+        img {
+            height: 80px;
+        }
+    }
+
+    .player-detail {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: stretch;
+
+        p {
+            margin-right: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        img {
+            padding-top: 10px;
+            height: 15px;
+        }
+    }
+
+    .player-mount {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+
+        img {
+            height: 20px;
+        }
+
+        p {
+            margin: 0px 0px 0px 5px;
+            color: red;
+            font-weight: bold;
+        }
+    }
+}

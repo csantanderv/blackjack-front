@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="58px" height="58px" viewBox="0 0 58 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>4203199341537356032</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="4203199341537356032" fill-rule="nonzero">
+            <circle id="Oval" fill="#EBBA16" cx="29" cy="29" r="29"></circle>
+            <g id="Group" transform="translate(21.000000, 13.000000)" fill="#FFFFFF">
+                <polygon id="Path" points="23 16 1 31 1 16.273 1 1"></polygon>
+                <path d="M1,32 C0.84,32 0.679,31.962 0.533,31.884 C0.205,31.711 0,31.371 0,31 L0,1 C0,0.629 0.205,0.289 0.533,0.116 C0.861,-0.058 1.257,-0.034 1.564,0.174 L23.564,15.174 C23.836,15.36 24,15.669 24,16 C24,16.331 23.836,16.64 23.563,16.826 L1.563,31.826 C1.394,31.941 1.197,32 1,32 Z M2,2.893 L2,29.108 L21.225,16 L2,2.893 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
