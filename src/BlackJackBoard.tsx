@@ -6,11 +6,10 @@ import BoardPlayer from './components/BoardPlayer';
 import BoardBank from './components/BoardBank';
 import LoginPage from './components/LoginPage';
 import './index.scss';
-import Routes from './routing/Routes';
 
 const ENDPOINT = 'http://127.0.0.1:4001';
 
-function App() {
+function BlackJackBoard() {
   const [response, setResponse] = useState('');
 
   /*   useEffect(() => {
@@ -21,21 +20,13 @@ function App() {
   }, []);
  */
   return (
-    <React.Fragment>
-      <Router>
-        <Switch>
-          <Route exact path='/' component={LoginPage} />
-          <Route component={Routes} />
-          {/*           <PrivateRoute
-            path='/private'
-            isAuthenticated={this.props.state.session.isAuthenticated}
-            component={PrivateContainer}
-          />
- */}{' '}
-        </Switch>
-      </Router>
-    </React.Fragment>
+    <div className='main-content'>
+      <Header></Header>
+      <BoardMultiplayer />
+      <BoardPlayer />
+      <BoardBank></BoardBank>
+    </div>
   );
 }
 
-export default App;
+export default BlackJackBoard;

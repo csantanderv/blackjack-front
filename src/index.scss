@@ -6,6 +6,12 @@
   --border: 1px solid #474a4d;
   --border-radius: 8px;
   --speed: 500ms;
+  --white: #afafaf;
+  --red: #e31b23;
+  --bodyColor: #292a2b;
+  --borderFormEls: hsl(0, 0%, 10%);
+  --bgFormEls: hsl(0, 0%, 14%);
+  --bgFormElsFocus: hsl(0, 7%, 20%);
 }
 
 p {
@@ -22,6 +28,19 @@ h2 {
 
 figure {
   margin: 0 0 0 0;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+  font-size: 100%;
+}
+
+button,
+label {
+  cursor: pointer;
 }
 
 body {

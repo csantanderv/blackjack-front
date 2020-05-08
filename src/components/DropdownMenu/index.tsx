@@ -38,15 +38,15 @@ const DropdownMenu = () => {
         onEnter={calcHeight}
       >
         <div className='menu'>
-          <DropdownItem leftIcon={<MenuIcon />} onClick={handleClickItem}>
-            My Profile
-          </DropdownItem>
           <DropdownItem
             leftIcon={<MenuIcon />}
             goToMenu='settings'
             onClick={handleClickItem}
           >
             Settings
+          </DropdownItem>
+          <DropdownItem leftIcon={<MenuIcon />} onClick={handleClickItem}>
+            Salir
           </DropdownItem>
         </div>
       </CSSTransition>
