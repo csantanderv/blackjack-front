@@ -4,8 +4,11 @@ import HitHandIcon from '../../assets/svg/hit-hand.svg';
 import GivecCardIcon from '../../assets/svg/give-card.svg';
 import PlayIcon from '../../assets/svg/play.svg';
 import ShuffleIcon from '../../assets/svg/shuffle.svg';
+import ShuffleCardsIcon from '../../assets/svg/shuffle-cards.svg';
+
 import GameButton from '../GameButton';
 import DealingBank from '../DealingBank';
+
 import '../../index.scss';
 import './style.scss';
 
@@ -26,7 +29,7 @@ const BoardBank = () => {
           <GameButton src={PlayIcon} />
           <GameButton src={HitHandIcon} />
           <GameButton src={GivecCardIcon} />
-          <GameButton src={ShuffleIcon} />
+          <GameButton src={ShuffleCardsIcon} />
         </div>
       </div>
     </div>

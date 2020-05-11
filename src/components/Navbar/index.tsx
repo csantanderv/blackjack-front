@@ -26,14 +26,27 @@ export const Navbar: FC = (props) => {
 
 type NavItemProps = {
   icon: ReactNode;
+  onClick(): void;
 };
 
 export const NavItem: FC<NavItemProps> = (props) => {
   const [open, setOpen] = useState(false);
 
+  const handleClick = (event: any) => {
+    event.preventDefault();
+    setOpen(!open);
+    if (open) {
+      props.onClick();
+    }
+  };
+
   return (
     <li className='nav-item'>
-      <a href='#/' className='icon-button-menu' onClick={() => setOpen(!open)}>
+      <a
+        href='#/'
+        className='icon-button-menu'
+        onClick={(event) => handleClick(event)}
+      >
         {props.icon}
       </a>
       {open && props.children}
