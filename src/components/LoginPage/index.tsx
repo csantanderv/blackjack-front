@@ -15,6 +15,8 @@ const LoginPage = () => {
     email: '',
     password: '',
   });
+  const [msgError, setMsgError] = useState('');
+  const history = useHistory();
 
   useEffect(() => {
     if (localStorage.getItem('token') && localStorage.getItem('token') !== '') {
@@ -22,10 +24,12 @@ const LoginPage = () => {
     }
   }, []);
 
-  const history = useHistory();
-
   const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     try {
+      user.email === '' || user.password === ''
+        ? setMsgError('Debe ingresar el email y password')
+        : setMsgError('');
+
       const body = JSON.stringify(user);
       const res = await ApiClient('').post('api/auth', body);
       dispatch({
@@ -44,6 +48,7 @@ const LoginPage = () => {
           msgError: 'El login o password no corresponde',
         },
       });
+      setMsgError('Email o password incorrecto');
     }
   };
 
@@ -57,6 +62,7 @@ const LoginPage = () => {
   return (
     <div className='login-content'>
       <img className='bufon' src={BufonIcon} alt='Boton Juego' />
+
       <h2>BlackJack Grumoso</h2>
       <form>
         <div className='custom-form login-form'>
@@ -80,6 +86,7 @@ const LoginPage = () => {
             value={user.password}
             required
           />
+          {msgError !== '' ? <p>{msgError}</p> : null}
           <button className='btn-grid' type='button' onClick={handleClick}>
             <span className='front'>Ingresar</span>
           </button>

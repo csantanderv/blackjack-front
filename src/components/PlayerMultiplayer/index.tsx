@@ -4,13 +4,18 @@ import StackCoinIcon from '../../assets/svg/stack-coin.svg';
 import LosingIcon from '../../assets/svg/losing.svg';
 import '../../index.scss';
 import './style.scss';
+import CardDeck from '../CardDeck';
 
-const PlayerCard = () => {
+const cartas = [
+  { card: '2C', hidden: false },
+  { card: '2C', hidden: false },
+  { card: 'X', hidden: true },
+];
+
+const PlayerMultiplayer = () => {
   return (
     <div className='player-board'>
-      <div className='player-cards'>
-        <img src={Card2C} alt='Carta' />
-      </div>
+      <CardDeck cards={cartas} />
       <div className='player-detail'>
         <p>Jugador 1</p>
         <img src={StackCoinIcon} alt='Wine' />
@@ -23,4 +28,4 @@ const PlayerCard = () => {
   );
 };
 
-export default PlayerCard;
+export default PlayerMultiplayer;

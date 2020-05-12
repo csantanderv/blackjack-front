@@ -4,6 +4,8 @@
   --text-color: #dadce1;
   --nav-size: 60px;
   --border: 1px solid #474a4d;
+  --border-red: 2px solid red;
+  --border-green: 2px solid green;
   --border-radius: 8px;
   --speed: 500ms;
   --white: #afafaf;
@@ -15,15 +17,23 @@
 }
 
 p {
-  color: #e4e6eb;
+  color: var(--text-color);
+  margin: 0 0 0 0;
 }
 
 h1 {
-  color: #e4e6eb;
+  margin: 0 0 0 0;
+  color: var(--text-color);
 }
 
 h2 {
-  color: #e4e6eb;
+  margin: 0 0 0 0;
+  color: var(--text-color);
+}
+
+h3 {
+  margin: 0 0 0 0;
+  color: var(--text-color);
 }
 
 figure {

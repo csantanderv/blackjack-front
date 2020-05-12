@@ -1,5 +1,5 @@
 import React from 'react';
-import PlayerCard from '../PlayerCard';
+import PlayerMultiplayer from '../PlayerMultiplayer';
 import '../../index.scss';
 import './style.scss';
 
@@ -9,9 +9,9 @@ const BoardMultiplayer = () => {
       <div className='item-container'>
         <div className='board-container'>
           {/* jugador 1 */}
-          <PlayerCard></PlayerCard>
+          <PlayerMultiplayer></PlayerMultiplayer>
           {/* jugador 2 */}
-          <PlayerCard></PlayerCard>
+          <PlayerMultiplayer></PlayerMultiplayer>
         </div>
       </div>
     </div>

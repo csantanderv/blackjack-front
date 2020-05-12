@@ -35,9 +35,7 @@ export const NavItem: FC<NavItemProps> = (props) => {
   const handleClick = (event: any) => {
     event.preventDefault();
     setOpen(!open);
-    if (open) {
-      props.onClick();
-    }
+    props.onClick();
   };
 
   return (

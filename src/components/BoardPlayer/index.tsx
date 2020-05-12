@@ -7,11 +7,17 @@ import PlayerBet from '../PlayerBet';
 import GameButton from '../GameButton';
 import '../../index.scss';
 
+const cartas = [
+  { card: '2C', hidden: false },
+  { card: '2C', hidden: false },
+  { card: 'X', hidden: true },
+];
+
 const BoardPlayer = () => {
   return (
     <div className='item-container'>
       <div className='game-options'>
-        <CardDeck></CardDeck>
+        <CardDeck cards={cartas}></CardDeck>
         <PlayerBet></PlayerBet>
         <div className='game-buttons'>
           <GameButton src={StandHandIcon} />

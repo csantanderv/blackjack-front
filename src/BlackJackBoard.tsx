@@ -15,8 +15,8 @@ const ENDPOINT = 'http://127.0.0.1:4001';
 const BlackJackBoard = (props: any) => {
   const { state, dispatch } = useContext(AppContext);
   const history = useHistory();
-  const [profile, setProfile] = useState('');
 
+  const [profile, setProfile] = useState('');
   useEffect(() => {
     getUser();
   }, []);
@@ -35,11 +35,12 @@ const BlackJackBoard = (props: any) => {
       });
       history.push('/game');
     } catch (error) {
+      setAuthToken('');
       dispatch({
         type: ActionTypes.Error,
         payload: {
           isError: true,
-          msgError: 'El login o password no corresponde',
+          msgError: 'Debe estar logeado para poder ingresar',
         },
       });
       history.push('/error');

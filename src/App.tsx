@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import './index.scss';
-import Routes from './routing/Routes';
 import { AppProvider } from './state/Store';
 import BlackJackBoard from './BlackJackBoard';
 import NotFound from './components/NotFound';
