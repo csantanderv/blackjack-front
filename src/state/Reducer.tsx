@@ -19,7 +19,12 @@ export const gameReducer = (state: InitialStateType, action: GameActions) => {
         isError: action.payload.isError,
         msgError: action.payload.msgError,
       };
-
+    case ActionTypes.NewGame:
+      return {
+        ...state,
+        newGame: action.payload.newGame,
+        players: action.payload.players,
+      };
     default:
       return state;
   }

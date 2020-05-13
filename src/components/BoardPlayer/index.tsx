@@ -14,15 +14,19 @@ const cartas = [
 ];
 
 const BoardPlayer = () => {
+  const handleStand = () => {};
+  const handleBet = () => {};
+  const handleHand = () => {};
+
   return (
     <div className='item-container'>
       <div className='game-options'>
         <CardDeck cards={cartas}></CardDeck>
         <PlayerBet></PlayerBet>
         <div className='game-buttons'>
-          <GameButton src={StandHandIcon} />
-          <GameButton src={BetMoneyIcon} />
-          <GameButton src={HitHandIcon} />
+          <GameButton src={StandHandIcon} onClick={handleStand} />
+          <GameButton src={BetMoneyIcon} onClick={handleBet} />
+          <GameButton src={HitHandIcon} onClick={handleHand} />
         </div>
       </div>
     </div>

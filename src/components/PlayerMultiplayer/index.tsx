@@ -1,28 +1,47 @@
 import React from 'react';
-import Card2C from '../../assets/svg/cards/2C.svg';
 import StackCoinIcon from '../../assets/svg/stack-coin.svg';
+import EmojiAngyIcon from '../../assets/svg/emoji-angry.svg';
 import LosingIcon from '../../assets/svg/losing.svg';
 import '../../index.scss';
 import './style.scss';
 import CardDeck from '../CardDeck';
+import { PlayerType } from '../../state/StoreTypes';
 
-const cartas = [
-  { card: '2C', hidden: false },
-  { card: '2C', hidden: false },
-  { card: 'X', hidden: true },
-];
+type PlayerMultiplayerProps = {
+  player: PlayerType;
+};
 
-const PlayerMultiplayer = () => {
+const PlayerMultiplayer = (props: PlayerMultiplayerProps) => {
+  const { player } = props;
+
+  // TODO: Falta agregar icono para jugando
+  const imgResult = (currentResult: string | undefined) => {
+    switch (currentResult) {
+      case 'WINNER':
+        return <img src={StackCoinIcon} alt='Wine' />;
+      case 'LOSER':
+        return <img src={EmojiAngyIcon} alt='Wine' />;
+      case 'PLAYING':
+        return (
+          <p>
+            <strong>J</strong>
+          </p>
+        );
+      default:
+        break;
+    }
+  };
+
   return (
     <div className='player-board'>
-      <CardDeck cards={cartas} />
+      <CardDeck cards={player.cards} />
       <div className='player-detail'>
-        <p>Jugador 1</p>
-        <img src={StackCoinIcon} alt='Wine' />
+        <p>{player.name}</p>
+        {imgResult(player.currentResult)}
       </div>
       <div className='player-mount'>
         <img src={LosingIcon} alt='Wine' />
-        <p>$ 5000</p>
+        <p>$ {player.totalAmountLost}</p>
       </div>
     </div>
   );

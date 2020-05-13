@@ -10,6 +10,10 @@ const initialState = {
   isAuth: false,
   isError: false,
   msgError: '',
+  newGame: false,
+  players: [],
+  currentPlayer: undefined,
+  currentBank: undefined,
 };
 
 export const AppContext = createContext<{

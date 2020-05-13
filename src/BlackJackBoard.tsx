@@ -15,23 +15,26 @@ const ENDPOINT = 'http://127.0.0.1:4001';
 const BlackJackBoard = (props: any) => {
   const { state, dispatch } = useContext(AppContext);
   const history = useHistory();
+  const [currentPlayer, setCurrentPlayer] = useState({ name: '', profile: '' });
 
-  const [profile, setProfile] = useState('');
   useEffect(() => {
-    getUser();
-  }, []);
+    if (currentPlayer.name === '') {
+      getUser();
+    }
+  }, [currentPlayer]);
 
   const getUser = async () => {
     try {
       setAuthToken(localStorage.token);
       const res = await ApiClient(state.token).get('api/auth');
-      setProfile(res.data.profile);
+      const user = {
+        profile: res.data.profile + '',
+        name: res.data.name + '',
+      };
+      setCurrentPlayer(user);
       dispatch({
         type: ActionTypes.UserLoaded,
-        payload: {
-          profile: res.data.profile + '',
-          name: res.data.name + '',
-        },
+        payload: user,
       });
       history.push('/game');
     } catch (error) {
@@ -54,12 +57,12 @@ const BlackJackBoard = (props: any) => {
     });
   }, []);
  */
-
+  // TODO: Falta agregar un loading
   return (
     <div className='main-content'>
       <Header></Header>
       <BoardMultiplayer />
-      {profile === 'BANK' ? <BoardBank /> : <BoardPlayer />}
+      {currentPlayer.profile === 'BANK' ? <BoardBank /> : <BoardPlayer />}
     </div>
   );
 };

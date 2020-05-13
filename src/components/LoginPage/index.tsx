@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import BufonIcon from '../../assets/svg/bufon.svg';
+import ShuffleCardIcon from '../../assets/svg/shuffle-cards.svg';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../state/Store';
 import ApiClient from '../../services/api/ApiClient';
@@ -7,7 +8,6 @@ import { ActionTypes } from '../../state/StoreTypes';
 import '../../index.scss';
 import '../../input.scss';
 import './style.scss';
-import setAuthToken from '../../utils/Auth';
 
 const LoginPage = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -61,7 +61,7 @@ const LoginPage = () => {
 
   return (
     <div className='login-content'>
-      <img className='bufon' src={BufonIcon} alt='Boton Juego' />
+      <img className='logo' src={ShuffleCardIcon} alt='Boton Juego' />
 
       <h2>BlackJack Grumoso</h2>
       <form>

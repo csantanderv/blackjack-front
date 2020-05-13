@@ -4,11 +4,12 @@ import './style.scss';
 
 type GameButtonProps = {
   src: string;
+  onClick(): void;
 };
 
 const GameButton = (props: GameButtonProps) => {
   return (
-    <figure className='hand-bet'>
+    <figure className='hand-bet' onClick={props.onClick}>
       <img src={props.src} alt='Boton Juego' />
     </figure>
   );

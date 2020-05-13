@@ -13,19 +13,27 @@ type CardDeckType = {
 };
 
 const CardDeck = (props: CardDeckType) => {
+  const cards = props.cards.map((card, index) => {
+    return !card.hidden ? (
+      <div key={index} className='card'>
+        <p>{card.card}</p>
+      </div>
+    ) : (
+      <div key={index} className='card card-hidden'>
+        <p>X</p>
+      </div>
+    );
+  });
+
+  const emptyCards = (
+    <div>
+      <p>Sin cartas</p>
+    </div>
+  );
+
   return (
     <div className='card-deck-player'>
-      {props.cards.map((card) => {
-        return !card.hidden ? (
-          <div className='card'>
-            <p>{card.card}</p>
-          </div>
-        ) : (
-          <div className='card card-hidden'>
-            <p>X</p>
-          </div>
-        );
-      })}
+      {props.cards && props.cards.length > 0 ? cards : emptyCards}
     </div>
   );
 };
