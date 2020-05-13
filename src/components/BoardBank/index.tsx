@@ -1,35 +1,37 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, Fragment } from 'react';
 import HitHandIcon from '../../assets/svg/hit-hand.svg';
 import GivecCardIcon from '../../assets/svg/give-card.svg';
 import PlayIcon from '../../assets/svg/play.svg';
 import ShuffleCardsIcon from '../../assets/svg/shuffle-cards.svg';
 import PlayersPlaying from '../PlayersPlaying';
 import GameButton from '../GameButton';
-import DealingBank from '../DealingBank';
-import '../../index.scss';
-import './style.scss';
 import { CurrentPlayer } from '../CurrentPlayer';
 import { AppContext } from '../../state/Store';
-import { ActionTypes } from '../../state/StoreTypes';
+import CardDeck from '../CardDeck';
+import { ActionTypes, PlayerType } from '../../state/StoreTypes';
+import { dispatchToast, ToastMsg } from '../../utils/ToastUtils';
+import '../../index.scss';
+import './style.scss';
 
 const BoardBank = () => {
   const { state, dispatch } = useContext(AppContext);
-  const [currentPlayer, setCurrentPlayer] = useState(null);
+  const [selectedPlayer, setSeletedPlayer] = useState<PlayerType | null>(null);
+  const { bank, players, currentPlayer } = state;
 
   const handleSelectedPlayer = (player: any) => {
-    setCurrentPlayer(player);
+    setSeletedPlayer(player);
   };
 
   const handleDeselectPlayer = () => {
-    setCurrentPlayer(null);
+    setSeletedPlayer(null);
   };
 
   const handlePlay = () => {
     // TODO: newGame() -> Socket
+    // TODO: Se deben agregar solamente los players de profile PLAYER
     dispatch({
       type: ActionTypes.NewGame,
       payload: {
-        newGame: true,
         players: [
           {
             id: '1',
@@ -39,11 +41,7 @@ const BoardBank = () => {
             totalAmountLost: 0,
             betAmount: 0,
             currentResult: 'PLAYING',
-            cards: [
-              { card: '2C', hidden: false },
-              { card: '3C', hidden: false },
-              { card: '4C', hidden: false },
-            ],
+            cards: [{ card: '2C', hidden: false }],
           },
 
           {
@@ -54,43 +52,83 @@ const BoardBank = () => {
             totalAmountLost: 0,
             betAmount: 0,
             currentResult: 'PLAYING',
-            cards: [
-              { card: '2C', hidden: false },
-              { card: '5J', hidden: false },
-              { card: '10M', hidden: false },
-            ],
+            cards: [{ card: '3C', hidden: false }],
           },
         ],
+        bank: {
+          id: '3',
+          name: 'banco',
+          profile: 'BANK',
+          playing: false,
+          totalAmountLost: 0,
+          betAmount: 0,
+          currentResult: 'PLAYING',
+          cards: [{ card: '2C', hidden: false }],
+        },
       },
     });
   };
 
-  const handleHit = () => {};
+  const handleHit = () => {
+    if (bank) {
+      bank.cards.push({ card: 'X1', hidden: false });
+      dispatch({
+        type: ActionTypes.BankHitCard,
+        payload: {
+          bank: bank,
+        },
+      });
+    } else {
+      dispatchToast('No hay banco definido');
+    }
+  };
 
-  const handleGiveCard = () => {};
+  const handleGiveCard = () => {
+    if (currentPlayer) {
+      // TODO: Debe obtener el nuevo listado de jugadores con la carta ya agregada en back
+      players.map((player) => {
+        if (player.id == currentPlayer.id) {
+          player.cards.push({ card: 'X1', hidden: false });
+        }
+      });
+      dispatch({
+        type: ActionTypes.GiveCard,
+        payload: {
+          players: players,
+        },
+      });
+    } else {
+      dispatchToast('Debe selecccionar un jugador');
+    }
+  };
 
   const handleShuffleCards = () => {};
 
   return (
-    <div className='item-container'>
-      <div className='game-options'>
-        <DealingBank></DealingBank>
-        <CurrentPlayer
-          currentPlayer={currentPlayer}
-          onDeselectPlayer={handleDeselectPlayer}
-        />
-        <PlayersPlaying
-          players={[{ name: 'A' }, { name: 'C' }, { name: 'D' }, { name: 'E' }]}
-          onSelectedPlayer={handleSelectedPlayer}
-        />
-        <div className='game-buttons'>
-          <GameButton src={PlayIcon} onClick={handlePlay} />
-          <GameButton src={HitHandIcon} onClick={handleHit} />
-          <GameButton src={GivecCardIcon} onClick={handleGiveCard} />
-          <GameButton src={ShuffleCardsIcon} onClick={handleShuffleCards} />
+    <Fragment>
+      <div className='item-container'>
+        <div className='game-options'>
+          <div className='deck'>
+            {bank !== null ? <CardDeck cards={bank.cards} /> : null}
+          </div>
+          <CurrentPlayer
+            selectedPlayer={selectedPlayer}
+            onDeselectPlayer={handleDeselectPlayer}
+          />
+          <PlayersPlaying
+            players={state.players}
+            onSelectedPlayer={handleSelectedPlayer}
+          />
+          <div className='game-buttons'>
+            <GameButton src={PlayIcon} onClick={handlePlay} />
+            <GameButton src={HitHandIcon} onClick={handleHit} />
+            <GameButton src={GivecCardIcon} onClick={handleGiveCard} />
+            <GameButton src={ShuffleCardsIcon} onClick={handleShuffleCards} />
+          </div>
         </div>
       </div>
-    </div>
+      <ToastMsg />
+    </Fragment>
   );
 };
 

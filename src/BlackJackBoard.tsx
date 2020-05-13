@@ -7,18 +7,18 @@ import { AppContext } from './state/Store';
 import './index.scss';
 import { useHistory } from 'react-router-dom';
 import ApiClient from './services/api/ApiClient';
-import { ActionTypes } from './state/StoreTypes';
+import { ActionTypes, PlayerType } from './state/StoreTypes';
 import setAuthToken from './utils/Auth';
 
 const ENDPOINT = 'http://127.0.0.1:4001';
 
 const BlackJackBoard = (props: any) => {
   const { state, dispatch } = useContext(AppContext);
+  const { currentPlayer } = state;
   const history = useHistory();
-  const [currentPlayer, setCurrentPlayer] = useState({ name: '', profile: '' });
 
   useEffect(() => {
-    if (currentPlayer.name === '') {
+    if (!currentPlayer) {
       getUser();
     }
   }, [currentPlayer]);
@@ -31,11 +31,23 @@ const BlackJackBoard = (props: any) => {
         profile: res.data.profile + '',
         name: res.data.name + '',
       };
-      setCurrentPlayer(user);
+      // TODO: Se debe cargar bien la data del jugador conectado
       dispatch({
         type: ActionTypes.UserLoaded,
-        payload: user,
+        payload: {
+          currentPlayer: {
+            id: '3',
+            name: res.data.name,
+            profile: res.data.profile,
+            playing: false,
+            totalAmountLost: 0,
+            betAmount: 0,
+            currentResult: 'PLAYING',
+            cards: [],
+          },
+        },
       });
+
       history.push('/game');
     } catch (error) {
       setAuthToken('');
@@ -62,7 +74,11 @@ const BlackJackBoard = (props: any) => {
     <div className='main-content'>
       <Header></Header>
       <BoardMultiplayer />
-      {currentPlayer.profile === 'BANK' ? <BoardBank /> : <BoardPlayer />}
+      {currentPlayer && currentPlayer.profile === 'BANK' ? (
+        <BoardBank />
+      ) : (
+        <BoardPlayer />
+      )}
     </div>
   );
 };

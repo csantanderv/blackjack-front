@@ -2,10 +2,7 @@ import React, { Fragment } from 'react';
 import AvatarPlayer from '../AvatarPlayer';
 import '../../index.scss';
 import './style.scss';
-
-type PlayerType = {
-  name: string;
-};
+import { PlayerType } from '../../state/StoreTypes';
 
 type PlayerPlayingType = {
   players: PlayerType[];

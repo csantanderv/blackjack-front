@@ -24,8 +24,8 @@ export type InitialStateType = {
   msgError: string;
   newGame: boolean;
   players: PlayerType[];
-  currentPlayer: PlayerType | undefined;
-  currentBank: PlayerType | undefined;
+  bank: PlayerType | null;
+  currentPlayer: PlayerType | null;
 };
 
 export type ActionMap<M extends { [index: string]: any }> = {
@@ -45,6 +45,11 @@ export enum ActionTypes {
   Error = 'ERROR',
   UserLoaded = 'USER_LOADED',
   NewGame = 'NEW_GAME',
+  GiveCard = 'GIVE_CARD',
+  BankHitCard = 'BANK_HIT_CARD',
+  BankLoaded = 'BANK_LOADED',
+  ChangeBet = 'CHANGE_BET_AMOUNT',
+  PlayerHitCard = 'PLAYER_HIT_CARD',
 }
 
 export type GamePayload = {
@@ -56,12 +61,26 @@ export type GamePayload = {
     msgError: string;
   };
   [ActionTypes.UserLoaded]: {
-    profile: string;
-    name: string;
+    currentPlayer: PlayerType;
   };
   [ActionTypes.NewGame]: {
-    newGame: boolean;
     players: PlayerType[];
+    bank: PlayerType;
+  };
+  [ActionTypes.GiveCard]: {
+    players: PlayerType[];
+  };
+  [ActionTypes.BankHitCard]: {
+    bank: PlayerType;
+  };
+  [ActionTypes.BankLoaded]: {
+    bank: PlayerType | null;
+  };
+  [ActionTypes.ChangeBet]: {
+    currentPlayer: PlayerType;
+  };
+  [ActionTypes.PlayerHitCard]: {
+    currentPlayer: PlayerType;
   };
 };
 

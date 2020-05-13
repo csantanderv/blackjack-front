@@ -3,38 +3,34 @@ import AvatarPlayer from '../AvatarPlayer';
 import CardDeck from '../CardDeck';
 import BetMoneyIcon from '../../assets/svg/bet-money.svg';
 import './style.scss';
+import { PlayerType } from '../../state/StoreTypes';
 
-type CurrentPlayerType = {
-  currentPlayer: any;
+type CurrentPlayerProps = {
+  selectedPlayer: PlayerType | null;
   onDeselectPlayer(): void;
 };
 
-const cartas = [
-  { card: '2C', hidden: false },
-  { card: '2C', hidden: false },
-  { card: 'X', hidden: true },
-];
-
-export const CurrentPlayer = (props: CurrentPlayerType) => {
+export const CurrentPlayer = (props: CurrentPlayerProps) => {
+  const { selectedPlayer } = props;
   const handleClick = () => {
     props.onDeselectPlayer();
   };
 
   return (
     <div className='current-player-info'>
-      {props.currentPlayer ? (
+      {selectedPlayer !== null ? (
         <div className='current-player'>
           <AvatarPlayer
-            name={props.currentPlayer.name}
+            name={selectedPlayer.name}
             size='40'
             onClick={handleClick}
           />
           <div className='bet'>
-            <p>$ 5.000</p>
+            <p>$ {selectedPlayer.betAmount}</p>
             <img src={BetMoneyIcon} />
           </div>
           <div className='deck'>
-            <CardDeck cards={cartas} />
+            <CardDeck cards={selectedPlayer.cards} />
           </div>
         </div>
       ) : (

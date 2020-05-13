@@ -10,8 +10,7 @@ export const gameReducer = (state: InitialStateType, action: GameActions) => {
     case ActionTypes.UserLoaded:
       return {
         ...state,
-        name: action.payload.name,
-        profile: action.payload.profile,
+        currentPlayer: action.payload.currentPlayer,
       };
     case ActionTypes.Error:
       return {
@@ -22,9 +21,35 @@ export const gameReducer = (state: InitialStateType, action: GameActions) => {
     case ActionTypes.NewGame:
       return {
         ...state,
-        newGame: action.payload.newGame,
+        bank: action.payload.bank,
         players: action.payload.players,
       };
+    case ActionTypes.GiveCard:
+      return {
+        ...state,
+        players: action.payload.players,
+      };
+    case ActionTypes.BankHitCard:
+      return {
+        ...state,
+        bank: action.payload.bank,
+      };
+    case ActionTypes.BankLoaded:
+      return {
+        ...state,
+        bank: action.payload.bank,
+      };
+    case ActionTypes.ChangeBet:
+      return {
+        ...state,
+        currentPlayer: action.payload.currentPlayer,
+      };
+    case ActionTypes.PlayerHitCard:
+      return {
+        ...state,
+        currentPlayer: action.payload.currentPlayer,
+      };
+
     default:
       return state;
   }

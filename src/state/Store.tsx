@@ -12,8 +12,8 @@ const initialState = {
   msgError: '',
   newGame: false,
   players: [],
-  currentPlayer: undefined,
-  currentBank: undefined,
+  currentPlayer: null,
+  bank: null,
 };
 
 export const AppContext = createContext<{
