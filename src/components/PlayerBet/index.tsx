@@ -17,15 +17,17 @@ const PlayerBet = () => {
   const handleChange = (delta: number) => {
     //TODO: Se debe cambiar le 100 por un delta configurable
     if (currentPlayer) {
-      dispatch({
-        type: ActionTypes.ChangeBet,
-        payload: {
-          currentPlayer: {
-            ...currentPlayer,
-            betAmount: currentPlayer.betAmount + delta,
+      if (currentPlayer.betAmount + delta >= 0) {
+        dispatch({
+          type: ActionTypes.ChangeBet,
+          payload: {
+            currentPlayer: {
+              ...currentPlayer,
+              betAmount: currentPlayer.betAmount + delta,
+            },
           },
-        },
-      });
+        });
+      }
     }
   };
 

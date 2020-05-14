@@ -7,7 +7,7 @@ import PlayerBet from '../PlayerBet';
 import GameButton from '../GameButton';
 import { dispatchToast, ToastMsg } from '../../utils/ToastUtils';
 import { AppContext } from '../../state/Store';
-import { PlayerType, ActionTypes } from '../../state/StoreTypes';
+import { ActionTypes } from '../../state/StoreTypes';
 import '../../index.scss';
 import './style.scss';
 
@@ -26,7 +26,7 @@ const BoardPlayer = () => {
         },
       });
     } else {
-      dispatchToast('No hay banco definido');
+      dispatchToast('No hay jugador definido');
     }
   };
 
