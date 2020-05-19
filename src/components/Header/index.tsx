@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ReactComponent as MenuIcon } from '../../assets/svg/menu-icon.svg';
 import { ReactComponent as QuitIcon } from '../../assets/svg/quit.svg';
 import DropdownMenu from '../../components/DropdownMenu';
 import { Navbar, NavItem } from '../../components/Navbar';
 import '../../index.scss';
 import { useHistory } from 'react-router-dom';
+import { AppContext } from '../../state/Store';
+import { ActionTypes } from '../../state/StoreTypes';
 
 const Header = (props: any) => {
+  const { state, dispatch } = useContext(AppContext);
   const history = useHistory();
 
   const logout = () => {
-    localStorage.setItem('token', '');
+    //localStorage.setItem('token', '');
+    dispatch({
+      type: ActionTypes.Login,
+      payload: {
+        token: '',
+      },
+    });
+
     history.push('/');
   };
 

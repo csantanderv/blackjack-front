@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
-import BufonIcon from '../../assets/svg/bufon.svg';
+import React, { useState, useEffect, useContext, Fragment } from 'react';
 import ShuffleCardIcon from '../../assets/svg/shuffle-cards.svg';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../state/Store';
@@ -8,6 +7,7 @@ import { ActionTypes } from '../../state/StoreTypes';
 import '../../index.scss';
 import '../../input.scss';
 import './style.scss';
+import { useLoginUser } from '../../services/hooks/useLoginUser';
 
 const LoginPage = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -16,39 +16,45 @@ const LoginPage = () => {
     password: '',
   });
   const [msgError, setMsgError] = useState('');
+  const [token, setLoginUser, isLoading, error] = useLoginUser();
   const history = useHistory();
 
   useEffect(() => {
-    if (localStorage.getItem('token') && localStorage.getItem('token') !== '') {
+    if (state && state.token && state.token !== '') {
       history.push('/game');
     }
   }, []);
 
-  const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    try {
-      user.email === '' || user.password === ''
-        ? setMsgError('Debe ingresar el email y password')
-        : setMsgError('');
-
-      const body = JSON.stringify(user);
-      const res = await ApiClient('').post('api/auth', body);
+  useEffect(() => {
+    if (token !== '') {
       dispatch({
         type: ActionTypes.Login,
         payload: {
-          token: res.data.token + '',
+          token: token + '',
         },
       });
-      localStorage.setItem('token', res.data.token);
       history.push('/game');
-    } catch (error) {
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (error !== '') {
       dispatch({
         type: ActionTypes.Error,
         payload: {
           isError: true,
-          msgError: 'El login o password no corresponde',
+          msgError: error + '',
         },
       });
-      setMsgError('Email o password incorrecto');
+    }
+  }, [error]);
+
+  const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (user.email !== '' && user.password !== '') {
+      const body = JSON.stringify(user);
+      setLoginUser(body);
+    } else {
+      setMsgError('Debe ingresar el email y password');
     }
   };
 
@@ -61,37 +67,42 @@ const LoginPage = () => {
 
   return (
     <div className='login-content'>
-      <img className='logo' src={ShuffleCardIcon} alt='Boton Juego' />
-
-      <h2>BlackJack Grumoso</h2>
-      <form>
-        <div className='custom-form login-form'>
-          <input
-            name='email'
-            type='text'
-            placeholder='Email'
-            value={user.email}
-            onChange={(e) => {
-              handleForm('email', e.target.value);
-            }}
-            required
-          />
-          <input
-            name='password'
-            type='Password'
-            placeholder='Password'
-            onChange={(e) => {
-              handleForm('password', e.target.value);
-            }}
-            value={user.password}
-            required
-          />
-          {msgError !== '' ? <p>{msgError}</p> : null}
-          <button className='btn-grid' type='button' onClick={handleClick}>
-            <span className='front'>Ingresar</span>
-          </button>
-        </div>
-      </form>
+      {isLoading ? (
+        <h2>Cargando...</h2>
+      ) : (
+        <Fragment>
+          <img className='logo' src={ShuffleCardIcon} alt='Boton Juego' />
+          <h2>BlackJack Grumoso</h2>
+          <form>
+            <div className='custom-form login-form'>
+              <input
+                name='email'
+                type='text'
+                placeholder='Email'
+                value={user.email}
+                onChange={(e) => {
+                  handleForm('email', e.target.value);
+                }}
+                required
+              />
+              <input
+                name='password'
+                type='Password'
+                placeholder='Password'
+                onChange={(e) => {
+                  handleForm('password', e.target.value);
+                }}
+                value={user.password}
+                required
+              />
+              {msgError !== '' ? <p>{msgError}</p> : null}
+              <button className='btn-grid' type='button' onClick={handleClick}>
+                <span className='front'>Ingresar</span>
+              </button>
+            </div>
+          </form>
+        </Fragment>
+      )}
     </div>
   );
 };

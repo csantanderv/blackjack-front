@@ -50,10 +50,14 @@ export enum ActionTypes {
   BankLoaded = 'BANK_LOADED',
   ChangeBet = 'CHANGE_BET_AMOUNT',
   PlayerHitCard = 'PLAYER_HIT_CARD',
+  Logout = 'LOGOUT',
 }
 
 export type GamePayload = {
   [ActionTypes.Login]: {
+    token: string;
+  };
+  [ActionTypes.Logout]: {
     token: string;
   };
   [ActionTypes.Error]: {

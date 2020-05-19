@@ -7,6 +7,12 @@ export const gameReducer = (state: InitialStateType, action: GameActions) => {
         ...state,
         token: action.payload.token,
       };
+    case ActionTypes.Logout:
+      return {
+        ...state,
+        token: action.payload.token,
+      };
+
     case ActionTypes.UserLoaded:
       return {
         ...state,

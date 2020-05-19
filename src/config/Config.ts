@@ -1,5 +1,5 @@
 const ConfigApp = {
-  backendUrl: 'http://192.168.0.12:4001',
+  backendUrl: 'http://localhost:3002',
 };
 
 export default ConfigApp;

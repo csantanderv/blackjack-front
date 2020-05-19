@@ -5,22 +5,12 @@ import './index.scss';
 import { AppProvider } from './state/Store';
 import BlackJackBoard from './BlackJackBoard';
 import NotFound from './components/NotFound';
-import setAuthToken from './utils/Auth';
 import ErrorPage from './components/ErrorPage';
 
 const ENDPOINT = 'http://127.0.0.1:4001';
 
 function App() {
-  /*   useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
-    socket.on('FromAPI', (data: any) => {
-      setResponse(data);
-    });
-  }, []);
- */
-  useEffect(() => {
-    //setAuthToken(localStorage.token);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <AppProvider>
@@ -30,12 +20,6 @@ function App() {
           <Route exact path='/game' component={BlackJackBoard} />
           <Route exact path='/error' component={ErrorPage} />
           <Route component={NotFound} />
-          {/*           <PrivateRoute
-            path='/private'
-            isAuthenticated={this.props.state.session.isAuthenticated}
-            component={PrivateContainer}
-          />
- */}
         </Switch>
       </Router>
     </AppProvider>
