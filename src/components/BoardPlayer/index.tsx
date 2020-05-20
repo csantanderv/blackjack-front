@@ -43,7 +43,7 @@ const BoardPlayer = () => {
           <GameButton src={HitHandIcon} onClick={handleHit} />
         </div>
       </div>
-      <ToastMsg />
+      {/* <ToastMsg /> */}
     </div>
   );
 };

@@ -26,6 +26,7 @@ export type InitialStateType = {
   players: PlayerType[];
   bank: PlayerType | null;
   currentPlayer: PlayerType | null;
+  socket: SocketIOClient.Socket | null;
 };
 
 export type ActionMap<M extends { [index: string]: any }> = {
@@ -44,6 +45,7 @@ export enum ActionTypes {
   GameBoard = 'SHOW_GAME_BOARD',
   Error = 'ERROR',
   UserLoaded = 'USER_LOADED',
+  //TODO: Hay que ver si newgame aplica, al parecer no se usará
   NewGame = 'NEW_GAME',
   GiveCard = 'GIVE_CARD',
   BankHitCard = 'BANK_HIT_CARD',
@@ -51,6 +53,8 @@ export enum ActionTypes {
   ChangeBet = 'CHANGE_BET_AMOUNT',
   PlayerHitCard = 'PLAYER_HIT_CARD',
   Logout = 'LOGOUT',
+  ConnectSocket = 'CONNECT_SOCKET',
+  ConnectPlayer = 'CONNECT_PLAYER',
 }
 
 export type GamePayload = {
@@ -85,6 +89,12 @@ export type GamePayload = {
   };
   [ActionTypes.PlayerHitCard]: {
     currentPlayer: PlayerType;
+  };
+  [ActionTypes.ConnectSocket]: {
+    socket: SocketIOClient.Socket;
+  };
+  [ActionTypes.ConnectPlayer]: {
+    players: PlayerType[];
   };
 };
 

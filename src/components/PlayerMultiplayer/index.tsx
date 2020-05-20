@@ -6,6 +6,7 @@ import '../../index.scss';
 import './style.scss';
 import CardDeck from '../CardDeck';
 import { PlayerType } from '../../state/StoreTypes';
+import { EventTypes } from '../../services/socket/EventTypes';
 
 type PlayerMultiplayerProps = {
   player: PlayerType;

@@ -1,13 +1,31 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PlayerMultiplayer from '../PlayerMultiplayer';
+import { AppContext } from '../../state/Store';
+import { EventTypes } from '../../services/socket/EventTypes';
+import { ActionTypes } from '../../state/StoreTypes';
 import '../../index.scss';
 import './style.scss';
-import { AppContext } from '../../state/Store';
 
 const BoardMultiplayer = () => {
   const { state, dispatch } = useContext(AppContext);
-  const { players } = state;
-  return (
+  const { socket, players } = state;
+
+  useEffect(() => {
+    if (socket !== null) {
+      socket.on(EventTypes.SetPlayers, (data: any) => {
+        dispatch({
+          type: ActionTypes.ConnectPlayer,
+          payload: {
+            players: data,
+          },
+        });
+      });
+    }
+  }, [socket]);
+
+  return players === null || players.length === 0 ? (
+    <p>Esperando jugadores</p>
+  ) : (
     <div className='item-container'>
       <div className='item-container'>
         <div className='board-container'>

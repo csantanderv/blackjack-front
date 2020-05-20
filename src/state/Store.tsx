@@ -14,6 +14,7 @@ const initialState = {
   players: [],
   currentPlayer: null,
   bank: null,
+  socket: null,
 };
 
 export const AppContext = createContext<{

@@ -16,7 +16,7 @@ import './style.scss';
 const BoardBank = () => {
   const { state, dispatch } = useContext(AppContext);
   const [selectedPlayer, setSeletedPlayer] = useState<PlayerType | null>(null);
-  const { bank, players, currentPlayer } = state;
+  const { bank, players, currentPlayer, socket } = state;
 
   const handleSelectedPlayer = (player: any) => {
     setSeletedPlayer(player);
@@ -127,7 +127,7 @@ const BoardBank = () => {
           </div>
         </div>
       </div>
-      <ToastMsg />
+      {/* <ToastMsg /> */}
     </Fragment>
   );
 };

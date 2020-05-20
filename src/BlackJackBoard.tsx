@@ -57,11 +57,19 @@ const BlackJackBoard = (props: any) => {
   //TODO: Arreglar problema de toast, quizas borrar uno de los toast container
   useEffect(() => {
     if (socket !== null) {
+      if (state.socket === null) {
+        dispatch({
+          type: ActionTypes.ConnectSocket,
+          payload: {
+            socket: socket,
+          },
+        });
+      }
       socket.on(EventTypes.Connected, (data: any) => {
         dispatchToast(data);
       });
       socket.on(EventTypes.PlayerConnected, (data: any) => {
-        dispatchToast(data);
+        dispatchToast(data.name);
       });
       socket.on(EventTypes.Disconnected, (data: any) => {
         dispatchToast(data);
