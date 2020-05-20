@@ -8,7 +8,11 @@ import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../state/Store';
 import { ActionTypes } from '../../state/StoreTypes';
 
-const Header = (props: any) => {
+type HeaderProps = {
+  onLogout(): void;
+};
+
+const Header = (props: HeaderProps) => {
   const { state, dispatch } = useContext(AppContext);
   const history = useHistory();
 
@@ -20,7 +24,7 @@ const Header = (props: any) => {
         token: '',
       },
     });
-
+    props.onLogout();
     history.push('/');
   };
 

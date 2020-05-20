@@ -7,18 +7,20 @@ import { AppContext } from './state/Store';
 import { useHistory } from 'react-router-dom';
 import { ActionTypes, PlayerType } from './state/StoreTypes';
 import { useGetUser } from './services/hooks/useGetUser';
+import { useSocket } from './services/hooks/useSocket';
 import './index.scss';
-
-const ENDPOINT = 'http://localhost:3002';
+import { EventTypes } from './services/socket/EventTypes';
+import { ToastMsg, dispatchToast } from './utils/ToastUtils';
 
 const BlackJackBoard = (props: any) => {
   const { state, dispatch } = useContext(AppContext);
-  const [user, isLoading, error] = useGetUser(state.token);
+  const [user, isLoading, errorUser] = useGetUser(state.token);
+  const [socket, errorSocket, setCurrentPlayer] = useSocket(state.token);
   const { currentPlayer } = state;
   const history = useHistory();
 
   useEffect(() => {
-    if (error !== '') {
+    if (errorUser !== '') {
       dispatch({
         type: ActionTypes.Error,
         payload: {
@@ -28,7 +30,7 @@ const BlackJackBoard = (props: any) => {
       });
       history.push('/error');
     }
-  }, [error]);
+  }, [errorUser]);
 
   useEffect(() => {
     console.log('use effect backjackboard');
@@ -37,7 +39,7 @@ const BlackJackBoard = (props: any) => {
         type: ActionTypes.UserLoaded,
         payload: {
           currentPlayer: {
-            id: '3',
+            id: user.id,
             name: user.name,
             profile: user.profile,
             playing: false,
@@ -48,32 +50,45 @@ const BlackJackBoard = (props: any) => {
           },
         },
       });
-      //history.push('/game');
+      setCurrentPlayer({ id: user.id, profile: user.profile, name: user.name });
     }
   }, [user]);
 
-  useEffect(() => {}, [currentPlayer]);
+  //TODO: Arreglar problema de toast, quizas borrar uno de los toast container
+  useEffect(() => {
+    if (socket !== null) {
+      socket.on(EventTypes.Connected, (data: any) => {
+        dispatchToast(data);
+      });
+      socket.on(EventTypes.PlayerConnected, (data: any) => {
+        dispatchToast(data);
+      });
+      socket.on(EventTypes.Disconnected, (data: any) => {
+        dispatchToast(data);
+      });
+    }
+  }, [socket]);
 
-  /*   useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
-    socket.on('FromAPI', (data: any) => {
-      setResponse(data);
-    });
-  }, []);
- */
+  const handleLogout = () => {
+    if (socket) {
+      socket.emit(EventTypes.Logout);
+    }
+  };
+
   return (
     <div className='main-content'>
       {isLoading ? (
         <h2>Cargando...</h2>
       ) : (
         <Fragment>
-          <Header></Header>
+          <Header onLogout={handleLogout}></Header>
           <BoardMultiplayer />
           {currentPlayer && currentPlayer.profile === 'BANK' ? (
             <BoardBank />
           ) : (
             <BoardPlayer />
           )}
+          <ToastMsg />
         </Fragment>
       )}
     </div>
