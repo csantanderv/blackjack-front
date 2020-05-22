@@ -1,4 +1,4 @@
-.player-board {
+.player-multiplayer {
     margin-top: 20px;
     padding: 5px;
     width: 100px;
@@ -9,16 +9,11 @@
     border: var(--border-green);
     border-radius: var(--border-radius);
 
-    .player-cards {
-        img {
-            height: 80px;
-        }
-    }
 
-    .player-detail {
+    .detail {
         display: flex;
         flex-direction: row;
-        justify-content: space-ar ound;
+        justify-content: space-around;
         align-items: stretch;
 
         p {
@@ -31,7 +26,7 @@
         }
     }
 
-    .player-mount {
+    .total-lost {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -46,6 +41,24 @@
         img {
             height: 20px;
         }
+    }
+
+    .bet-amount {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+
+        p {
+            margin: 0px 0px 0px 5px;
+            color: green;
+            font-weight: bold;
+        }
+
+        img {
+            height: 20px;
+        }
 
     }
+
 }

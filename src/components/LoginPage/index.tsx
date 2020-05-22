@@ -33,6 +33,7 @@ const LoginPage = () => {
           token: token + '',
         },
       });
+      localStorage.setItem('token', token);
       history.push('/game');
     }
   }, [token]);

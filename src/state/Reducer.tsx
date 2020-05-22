@@ -59,10 +59,25 @@ export const gameReducer = (state: InitialStateType, action: GameActions) => {
         ...state,
         socket: action.payload.socket,
       };
-    case ActionTypes.ConnectPlayer:
+    case ActionTypes.SetPlayers:
       return {
         ...state,
         players: action.payload.players,
+      };
+    case ActionTypes.SetBank:
+      return {
+        ...state,
+        bank: action.payload.bank,
+      };
+    case ActionTypes.SetCurrentPlayer:
+      return {
+        ...state,
+        currentPlayer: action.payload.currentPlayer,
+      };
+    case ActionTypes.SetConnectedUser:
+      return {
+        ...state,
+        connectedUser: action.payload.connectedUser,
       };
     default:
       return state;

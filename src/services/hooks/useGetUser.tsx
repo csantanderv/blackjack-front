@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { PlayerType } from '../../state/StoreTypes';
 
 export const useGetUser = (
-  token: string,
+  token: string | null,
 ): [PlayerType | null, boolean, any] => {
   const [user, setUser] = useState<PlayerType | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -16,8 +16,10 @@ export const useGetUser = (
   const fetchData = async () => {
     try {
       setIsLoading(true);
-      const resp = await ApiClient(token).get('auth');
-      setUser(resp.data);
+      if (token && token !== '') {
+        const resp = await ApiClient(token).get('auth');
+        setUser(resp.data);
+      }
     } catch (e) {
       console.log(e);
       setError('Ocurrió un error al obtener el usuario');

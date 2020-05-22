@@ -6,13 +6,15 @@ import { ActionTypes } from '../../state/StoreTypes';
 import '../../index.scss';
 import './style.scss';
 
+type PlayerBetProps = {
+  onBetAmount(): void;
+};
+
 const PlayerBet = () => {
   const { state, dispatch } = useContext(AppContext);
   const { currentPlayer } = state;
 
-  useEffect(() => {
-    console.log('entro use effect PlayerBet');
-  }, [currentPlayer]);
+  useEffect(() => {}, [currentPlayer]);
 
   const handleChange = (delta: number) => {
     //TODO: Se debe cambiar le 100 por un delta configurable

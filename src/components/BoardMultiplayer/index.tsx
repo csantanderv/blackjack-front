@@ -14,7 +14,7 @@ const BoardMultiplayer = () => {
     if (socket !== null) {
       socket.on(EventTypes.SetPlayers, (data: any) => {
         dispatch({
-          type: ActionTypes.ConnectPlayer,
+          type: ActionTypes.SetPlayers,
           payload: {
             players: data,
           },

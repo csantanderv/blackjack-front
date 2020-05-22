@@ -2,11 +2,12 @@ import React, { FC } from 'react';
 import StackCoinIcon from '../../assets/svg/stack-coin.svg';
 import EmojiAngyIcon from '../../assets/svg/emoji-angry.svg';
 import LosingIcon from '../../assets/svg/losing.svg';
-import '../../index.scss';
-import './style.scss';
+import BetMoneyIcon from '../../assets/svg/bet-money.svg';
 import CardDeck from '../CardDeck';
 import { PlayerType } from '../../state/StoreTypes';
 import { EventTypes } from '../../services/socket/EventTypes';
+import '../../index.scss';
+import './style.scss';
 
 type PlayerMultiplayerProps = {
   player: PlayerType;
@@ -21,7 +22,7 @@ const ImgResult: FC<PlayerMultiplayerProps> = (props) => {
     case 'PLAYING':
       return (
         <p>
-          <strong>J</strong>
+          <strong> J</strong>
         </p>
       );
     default:
@@ -31,19 +32,21 @@ const ImgResult: FC<PlayerMultiplayerProps> = (props) => {
 
 const PlayerMultiplayer = (props: PlayerMultiplayerProps) => {
   const { player } = props;
-
   // TODO: Falta agregar icono para jugando
-
   return (
-    <div className='player-board'>
+    <div className='player-multiplayer'>
       <CardDeck cards={player.cards} />
-      <div className='player-detail'>
+      <div className='detail'>
         <p>{player.name}</p>
         <ImgResult player={player} />
       </div>
-      <div className='player-mount'>
-        <img src={LosingIcon} alt='Wine' />
+      <div className='total-lost'>
+        <img src={LosingIcon} alt='Perdido' />
         <p>$ {player.totalAmountLost}</p>
+      </div>
+      <div className='bet-amount'>
+        <img src={BetMoneyIcon} alt='Apostado' />
+        <p>$ {player.betAmount}</p>
       </div>
     </div>
   );

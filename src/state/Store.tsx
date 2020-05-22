@@ -12,6 +12,7 @@ const initialState = {
   msgError: '',
   newGame: false,
   players: [],
+  connectedUser: null,
   currentPlayer: null,
   bank: null,
   socket: null,

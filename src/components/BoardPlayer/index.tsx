@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import StandHandIcon from '../../assets/svg/stand-hand.svg';
 import HitHandIcon from '../../assets/svg/hit-hand.svg';
 import BetMoneyIcon from '../../assets/svg/bet-money.svg';
@@ -7,24 +7,63 @@ import PlayerBet from '../PlayerBet';
 import GameButton from '../GameButton';
 import { dispatchToast, ToastMsg } from '../../utils/ToastUtils';
 import { AppContext } from '../../state/Store';
-import { ActionTypes } from '../../state/StoreTypes';
+import { ActionTypes, PlayerType } from '../../state/StoreTypes';
+import { EventTypes } from '../../services/socket/EventTypes';
 import '../../index.scss';
 import './style.scss';
 
 const BoardPlayer = () => {
   const { state, dispatch } = useContext(AppContext);
-  const { bank, players, currentPlayer } = state;
+  const { connectedUser, players, currentPlayer, socket } = state;
+
+  useEffect(() => {
+    if (socket) {
+      socket.on(EventTypes.SetPlayers, (data: any) => {
+        if (data) {
+          dispatch({
+            type: ActionTypes.SetPlayers,
+            payload: {
+              players: data,
+            },
+          });
+        }
+      });
+    }
+  }, [socket]);
+
+  useEffect(() => {
+    if (players && connectedUser) {
+      players.map((player: PlayerType) => {
+        if (player.id === connectedUser.id) {
+          dispatch({
+            type: ActionTypes.SetCurrentPlayer,
+            payload: {
+              currentPlayer: player,
+            },
+          });
+        }
+      });
+    }
+  }, [players]);
+
   const handleStand = () => {};
-  const handleBet = () => {};
+
+  const handleBet = () => {
+    if (currentPlayer && socket) {
+      socket.emit(EventTypes.PlayerBet, currentPlayer);
+    }
+  };
+
   const handleHit = () => {
     if (currentPlayer) {
-      currentPlayer.cards.push({ card: 'X1', hidden: false });
+      /*       currentPlayer.cards.push({ card: 'X1', hidden: false });
       dispatch({
         type: ActionTypes.PlayerHitCard,
         payload: {
           currentPlayer: currentPlayer,
         },
       });
+ */
     } else {
       dispatchToast('No hay jugador definido');
     }
@@ -36,7 +75,7 @@ const BoardPlayer = () => {
         <div className='deck'>
           {currentPlayer ? <CardDeck cards={currentPlayer.cards} /> : null}
         </div>
-        <PlayerBet></PlayerBet>
+        <PlayerBet />
         <div className='game-buttons'>
           <GameButton src={StandHandIcon} onClick={handleStand} />
           <GameButton src={BetMoneyIcon} onClick={handleBet} />

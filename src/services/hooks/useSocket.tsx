@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { PlayerType } from '../../state/StoreTypes';
 import socketIOClient from 'socket.io-client';
 import ConfigApp from '../../config/Config';
 
@@ -24,8 +23,10 @@ export const useSocket = (
   useEffect(() => {
     if (user !== null && socket === null) {
       try {
-        const socket = socketIOClient(ConfigApp.backendUrl, {
+        console.log('conecto al jugador', user);
+        const socket = socketIOClient(ConfigApp.backendUrl + '/gameEvents', {
           query: { ...user },
+          forceNew: true,
         });
         setSocket(socket);
       } catch (error) {

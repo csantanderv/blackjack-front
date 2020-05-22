@@ -26,6 +26,7 @@ export type InitialStateType = {
   players: PlayerType[];
   bank: PlayerType | null;
   currentPlayer: PlayerType | null;
+  connectedUser: PlayerType | null;
   socket: SocketIOClient.Socket | null;
 };
 
@@ -54,7 +55,10 @@ export enum ActionTypes {
   PlayerHitCard = 'PLAYER_HIT_CARD',
   Logout = 'LOGOUT',
   ConnectSocket = 'CONNECT_SOCKET',
-  ConnectPlayer = 'CONNECT_PLAYER',
+  SetPlayers = 'SET_PLAYERS',
+  SetBank = 'SET_BANK',
+  SetCurrentPlayer = 'SET_CURRENT_PLAYER',
+  SetConnectedUser = 'SET_CONNECTED_USER',
 }
 
 export type GamePayload = {
@@ -93,8 +97,17 @@ export type GamePayload = {
   [ActionTypes.ConnectSocket]: {
     socket: SocketIOClient.Socket;
   };
-  [ActionTypes.ConnectPlayer]: {
+  [ActionTypes.SetPlayers]: {
     players: PlayerType[];
+  };
+  [ActionTypes.SetCurrentPlayer]: {
+    currentPlayer: PlayerType;
+  };
+  [ActionTypes.SetBank]: {
+    bank: PlayerType;
+  };
+  [ActionTypes.SetConnectedUser]: {
+    connectedUser: PlayerType;
   };
 };
 

@@ -14,9 +14,10 @@ import { ToastMsg, dispatchToast } from './utils/ToastUtils';
 
 const BlackJackBoard = (props: any) => {
   const { state, dispatch } = useContext(AppContext);
-  const [user, isLoading, errorUser] = useGetUser(state.token);
+  const token = localStorage.getItem('token');
+  const [user, isLoading, errorUser] = useGetUser(token);
   const [socket, errorSocket, setCurrentPlayer] = useSocket(state.token);
-  const { currentPlayer } = state;
+  const { connectedUser } = state;
   const history = useHistory();
 
   useEffect(() => {
@@ -36,9 +37,9 @@ const BlackJackBoard = (props: any) => {
     console.log('use effect backjackboard');
     if (user !== null) {
       dispatch({
-        type: ActionTypes.UserLoaded,
+        type: ActionTypes.SetConnectedUser,
         payload: {
-          currentPlayer: {
+          connectedUser: {
             id: user.id,
             name: user.name,
             profile: user.profile,
@@ -69,6 +70,12 @@ const BlackJackBoard = (props: any) => {
         dispatchToast(data);
       });
       socket.on(EventTypes.PlayerConnected, (data: any) => {
+        dispatch({
+          type: ActionTypes.SetCurrentPlayer,
+          payload: {
+            currentPlayer: data,
+          },
+        });
         dispatchToast(data.name);
       });
       socket.on(EventTypes.Disconnected, (data: any) => {
@@ -81,6 +88,7 @@ const BlackJackBoard = (props: any) => {
     if (socket) {
       socket.emit(EventTypes.Logout);
     }
+    localStorage.setItem('token', '');
   };
 
   return (
@@ -91,7 +99,7 @@ const BlackJackBoard = (props: any) => {
         <Fragment>
           <Header onLogout={handleLogout}></Header>
           <BoardMultiplayer />
-          {currentPlayer && currentPlayer.profile === 'BANK' ? (
+          {connectedUser && connectedUser.profile === 'BANK' ? (
             <BoardBank />
           ) : (
             <BoardPlayer />
