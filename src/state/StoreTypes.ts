@@ -9,6 +9,8 @@ export type PlayerType = {
   profile: string;
   playing: boolean;
   totalAmountLost: number;
+  hiting: boolean;
+  standing: boolean;
   betAmount: number;
   currentResult: 'LOSER' | 'WINNER' | 'PLAYING' | undefined | string;
   cards: CarType[];

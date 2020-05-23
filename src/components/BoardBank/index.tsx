@@ -72,22 +72,8 @@ const BoardBank = () => {
   };
 
   const handleGiveCard = () => {
-    if (selectedPlayer) {
-      // TODO: Debe obtener el nuevo listado de jugadores con la carta ya agregada en back
-      /*       players.map((player) => {
-        if (player.id == selectedPlayer.id) {
-          player.cards.push({ card: 'X1', hidden: false });
-        }
-      });
-      dispatch({
-        type: ActionTypes.GiveCard,
-        payload: {
-          players: players,
-        },
-      });
- */
-    } else {
-      dispatchToast('Debe selecccionar un jugador');
+    if (selectedPlayer && socket) {
+      socket.emit(EventTypes.GiveCard, selectedPlayer);
     }
   };
 

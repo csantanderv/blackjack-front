@@ -8,9 +8,9 @@ import { useHistory } from 'react-router-dom';
 import { ActionTypes, PlayerType } from './state/StoreTypes';
 import { useGetUser } from './services/hooks/useGetUser';
 import { useSocket } from './services/hooks/useSocket';
-import './index.scss';
 import { EventTypes } from './services/socket/EventTypes';
 import { ToastMsg, dispatchToast } from './utils/ToastUtils';
+import './index.scss';
 
 const BlackJackBoard = (props: any) => {
   const { state, dispatch } = useContext(AppContext);
@@ -44,6 +44,8 @@ const BlackJackBoard = (props: any) => {
             name: user.name,
             profile: user.profile,
             playing: false,
+            hiting: true,
+            standing: true,
             totalAmountLost: 0,
             betAmount: 0,
             currentResult: 'PLAYING',

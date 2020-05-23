@@ -17,7 +17,12 @@ const PlayersPlaying = (props: PlayerPlayingType) => {
     <Fragment>
       <div className='players-avatars'>
         {props.players.map((item) => (
-          <AvatarPlayer name={item.name} onClick={(e) => handleClick(item)} />
+          <AvatarPlayer
+            name={item.name}
+            hiting={item.hiting}
+            standing={item.standing}
+            onClick={(e) => handleClick(item)}
+          />
         ))}
       </div>
     </Fragment>

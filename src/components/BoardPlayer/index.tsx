@@ -46,7 +46,11 @@ const BoardPlayer = () => {
     }
   }, [players]);
 
-  const handleStand = () => {};
+  const handleStand = () => {
+    if (currentPlayer && socket) {
+      socket.emit(EventTypes.PlayerStand, currentPlayer);
+    }
+  };
 
   const handleBet = () => {
     if (currentPlayer && socket) {
@@ -55,17 +59,8 @@ const BoardPlayer = () => {
   };
 
   const handleHit = () => {
-    if (currentPlayer) {
-      /*       currentPlayer.cards.push({ card: 'X1', hidden: false });
-      dispatch({
-        type: ActionTypes.PlayerHitCard,
-        payload: {
-          currentPlayer: currentPlayer,
-        },
-      });
- */
-    } else {
-      dispatchToast('No hay jugador definido');
+    if (currentPlayer && socket) {
+      socket.emit(EventTypes.PlayerHit, currentPlayer);
     }
   };
 
