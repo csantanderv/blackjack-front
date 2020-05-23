@@ -12,32 +12,6 @@
         height: 40px;
     }
 
-    .game-info {
-        display: flex;
-        flex-direction: row;
-        justify-content: left;
-        align-items: center;
-        width: 50%;
-        padding: 0 1rem;
-
-        .player-bank-info {
-            display: flex;
-            flex-direction: column;
-
-            .player-name {
-                margin: 0;
-                padding: 0px 10px 0px;
-                font-size: 14px;
-                color: green;
-            }
-
-            .mount-bank {
-                margin: 0;
-                padding: 0px 10px;
-                font-size: 12px;
-            }
-        }
-    }
 }
 
 .navbar {

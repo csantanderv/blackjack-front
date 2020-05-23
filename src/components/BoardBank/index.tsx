@@ -49,26 +49,15 @@ const BoardBank = () => {
   };
 
   const handlePlay = () => {
-    // TODO: newGame() -> Socket
-    // TODO: Se deben agregar solamente los players de profile PLAYER
     if (socket) {
       socket.emit(EventTypes.NewGame);
     }
   };
 
   const handleHit = () => {
-    /*     if (bank) {
-      bank.cards.push({ card: 'X1', hidden: false });
-      dispatch({
-        type: ActionTypes.BankHitCard,
-        payload: {
-          bank: bank,
-        },
-      });
-    } else {
-      dispatchToast('No hay banco definido');
+    if (bank && socket) {
+      socket.emit(EventTypes.BankHit);
     }
- */
   };
 
   const handleGiveCard = () => {
