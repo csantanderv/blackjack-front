@@ -12,7 +12,7 @@ export type PlayerType = {
   hiting: boolean;
   standing: boolean;
   betAmount: number;
-  currentResult: 'LOSER' | 'WINNER' | 'PLAYING' | undefined | string;
+  currentResult: 'LOSER' | 'WINNER' | 'PLAYING' | undefined | null | string;
   cards: CarType[];
 };
 

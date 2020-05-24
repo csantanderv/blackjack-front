@@ -21,9 +21,7 @@ export const CurrentPlayer = (props: CurrentPlayerProps) => {
       {selectedPlayer !== null ? (
         <div className='current-player'>
           <AvatarPlayer
-            name={selectedPlayer.name}
-            hiting={selectedPlayer.hiting}
-            standing={selectedPlayer.standing}
+            player={selectedPlayer}
             size='40'
             onClick={handleClick}
           />

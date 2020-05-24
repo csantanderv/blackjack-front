@@ -13,6 +13,7 @@ type PlayerMultiplayerProps = {
   player: PlayerType;
 };
 
+//TODO: Unificar tratamiento resultado
 const ImgResult: FC<PlayerMultiplayerProps> = (props) => {
   switch (props.player.currentResult) {
     case 'WINNER':
@@ -22,7 +23,7 @@ const ImgResult: FC<PlayerMultiplayerProps> = (props) => {
     case 'PLAYING':
       return (
         <p>
-          <strong> J</strong>
+          <strong> </strong>
         </p>
       );
     default:

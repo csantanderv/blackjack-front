@@ -9,8 +9,8 @@ import { CurrentPlayer } from '../CurrentPlayer';
 import { AppContext } from '../../state/Store';
 import CardDeck from '../CardDeck';
 import { ActionTypes, PlayerType } from '../../state/StoreTypes';
-import { dispatchToast, ToastMsg } from '../../utils/ToastUtils';
 import { EventTypes } from '../../services/socket/EventTypes';
+import { IconCurrentResult } from '../IconCurrentResult';
 import '../../index.scss';
 import './style.scss';
 
@@ -72,9 +72,16 @@ const BoardBank = () => {
     <Fragment>
       <div className='item-container'>
         <div className='game-options'>
-          <div className='deck'>
-            {bank !== null ? <CardDeck cards={bank.cards} /> : null}
-          </div>
+          {bank ? (
+            <Fragment>
+              <div className='deck'>
+                <CardDeck cards={bank.cards} />
+              </div>
+              <div className='current-result'>
+                <IconCurrentResult player={bank} className='icon' />
+              </div>
+            </Fragment>
+          ) : null}
           <CurrentPlayer
             selectedPlayer={selectedPlayer}
             onDeselectPlayer={handleDeselectPlayer}
@@ -91,7 +98,6 @@ const BoardBank = () => {
           </div>
         </div>
       </div>
-      {/* <ToastMsg /> */}
     </Fragment>
   );
 };

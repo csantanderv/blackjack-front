@@ -1,39 +1,35 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Avatar from 'react-avatar';
-import HitHandIcon from '../../assets/svg/hit-hand.svg';
-import StandHandIcon from '../../assets/svg/stand-hand.svg';
+import { PlayerType } from '../../state/StoreTypes';
+import { IconCurrentResult } from '../IconCurrentResult';
 import '../../index.scss';
 import './style.scss';
 
 type AvatarPlayerProps = {
-  name: string;
-  hiting: boolean;
-  standing: boolean;
-  size?: string;
+  player: PlayerType | null;
+  size: string;
   onClick(player: any): void;
 };
 
 const AvatarPlayer = (props: AvatarPlayerProps) => {
+  const { player, size } = props;
   const handleClick = () => {
-    props.onClick({ player: { name: props.name } });
+    if (player) {
+      props.onClick({ player: { name: player.name } });
+    }
   };
-  return (
+
+  return player ? (
     <div className='avatar-player'>
-      {props.hiting ? (
-        <img src={HitHandIcon} alt='hithand' className='hit-img' />
-      ) : props.standing ? (
-        <img src={StandHandIcon} alt='hithand' className='hit-img' />
-      ) : (
-        <div className='hit-img'></div>
-      )}
+      <IconCurrentResult player={player} className='hit-img' />
       <Avatar
-        name={props.name}
+        name={player.name}
         round={true}
-        size={props.size ? props.size : '40'}
+        size={size ? size : '40'}
         onClick={handleClick}
       />
     </div>
-  );
+  ) : null;
 };
 
 export default AvatarPlayer;
