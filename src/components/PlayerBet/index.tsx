@@ -33,29 +33,35 @@ const PlayerBet = () => {
     }
   };
 
-  return (
+  return currentPlayer ? (
     <div className='bet-container'>
-      <figure
-        className='icon-coin'
-        onClick={(e: any) => {
-          e.preventDefault();
-          handleChange(100);
-        }}
-      >
-        <img src={CoinUpIcon} alt='Apuesta Más' />
-      </figure>
-      <h1>$ {currentPlayer ? currentPlayer.betAmount : '0'}</h1>
-      <figure
-        className='icon-coin'
-        onClick={(e: any) => {
-          e.preventDefault();
-          handleChange(-100);
-        }}
-      >
-        <img src={CoinDownIcon} alt='Apuesta Menos' />
-      </figure>
+      <div className='icon-coin'>
+        <img
+          src={CoinUpIcon}
+          onClick={(e: any) => {
+            e.preventDefault();
+            handleChange(100);
+          }}
+          alt='Apuesta Más'
+        />
+      </div>
+
+      <div className='bet-amount'>
+        <h1>$ {currentPlayer.betAmount}</h1>
+      </div>
+
+      <div className='icon-coin'>
+        <img
+          src={CoinDownIcon}
+          onClick={(e: any) => {
+            e.preventDefault();
+            handleChange(-100);
+          }}
+          alt='Apuesta Menos'
+        />
+      </div>
     </div>
-  );
+  ) : null;
 };
 
 export default PlayerBet;

@@ -9,7 +9,7 @@ type GameButtonProps = {
 
 const GameButton = (props: GameButtonProps) => {
   return (
-    <figure className='hand-bet' onClick={props.onClick}>
+    <figure className='game-button' onClick={props.onClick}>
       <img src={props.src} alt='Boton Juego' />
     </figure>
   );

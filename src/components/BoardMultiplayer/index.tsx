@@ -29,8 +29,8 @@ const BoardMultiplayer = () => {
     <div className='item-container'>
       <div className='item-container'>
         <div className='board-container'>
-          {players.map((player) => {
-            return <PlayerMultiplayer player={player} />;
+          {players.map((player, index) => {
+            return <PlayerMultiplayer key={index} player={player} />;
           })}
         </div>
       </div>

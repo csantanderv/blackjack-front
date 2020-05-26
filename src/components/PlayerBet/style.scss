@@ -1,20 +1,29 @@
 .bet-container {
     display: flex;
+    width: 100%;
+    flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-}
 
-.icon-coin {
-    height: 60px;
-    border-radius: 100px;
-    box-shadow: 0 5px #999;
+    .icon-coin {
+        margin: 10px 20px 10px 20px;
 
-    img {
-        height: 59px;
+        img {
+            height: 40px;
+            border-radius: 100px;
+            box-shadow: 0 5px #999;
+
+            :active {
+                box-shadow: 0 2px #666;
+                transform: translateY(4px);
+            }
+        }
     }
 
-    :active {
-        box-shadow: 0 2px #666;
-        transform: translateY(4px);
+    .bet-amount {
+        h1 {
+            font-size: 20px;
+        }
     }
+
 }

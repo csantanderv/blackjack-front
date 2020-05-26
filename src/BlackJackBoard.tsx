@@ -16,7 +16,7 @@ const BlackJackBoard = (props: any) => {
   const { state, dispatch } = useContext(AppContext);
   const token = localStorage.getItem('token');
   const [user, isLoading, errorUser] = useGetUser(token);
-  const [socket, errorSocket, setCurrentPlayer] = useSocket(state.token);
+  const [socket, errorSocket, setSocketPlayer] = useSocket(state.token);
   const { connectedUser } = state;
   const history = useHistory();
 
@@ -53,7 +53,7 @@ const BlackJackBoard = (props: any) => {
           },
         },
       });
-      setCurrentPlayer({ id: user.id, profile: user.profile, name: user.name });
+      setSocketPlayer({ id: user.id, profile: user.profile, name: user.name });
     }
   }, [user]);
 
@@ -68,9 +68,6 @@ const BlackJackBoard = (props: any) => {
           },
         });
       }
-      socket.on(EventTypes.Connected, (data: any) => {
-        dispatchToast(data);
-      });
       socket.on(EventTypes.PlayerConnected, (data: any) => {
         dispatch({
           type: ActionTypes.SetCurrentPlayer,
@@ -78,7 +75,8 @@ const BlackJackBoard = (props: any) => {
             currentPlayer: data,
           },
         });
-        dispatchToast(data.name);
+        dispatchToast(data.name + ' se ha conectado');
+        console.log('ento al dispathc toast que webea');
       });
       socket.on(EventTypes.Disconnected, (data: any) => {
         dispatchToast(data);
@@ -89,6 +87,7 @@ const BlackJackBoard = (props: any) => {
   const handleLogout = () => {
     if (socket) {
       socket.emit(EventTypes.Logout);
+      //socket.disconnect();
     }
     localStorage.setItem('token', '');
   };

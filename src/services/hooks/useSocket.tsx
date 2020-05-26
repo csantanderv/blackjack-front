@@ -16,14 +16,13 @@ export const useSocket = (
   const [error, setError] = useState('');
 
   //TODO: falta agregar el socket para la authentiacion
-  const setCurrentPlayer = (player: PlayerUseSocketProps) => {
+  const setSocketPlayer = (player: PlayerUseSocketProps) => {
     setUser(player);
   };
 
   useEffect(() => {
     if (user !== null && socket === null) {
       try {
-        console.log('conecto al jugador', user);
         const socket = socketIOClient(ConfigApp.backendUrl + '/gameEvents', {
           query: { ...user },
           forceNew: true,
@@ -35,5 +34,5 @@ export const useSocket = (
     }
   }, [user]);
 
-  return [socket, error, setCurrentPlayer];
+  return [socket, error, setSocketPlayer];
 };

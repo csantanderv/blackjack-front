@@ -28,6 +28,7 @@ const BoardBank = () => {
             players: data,
           },
         });
+        handleDeselectPlayer();
       });
       socket.on(EventTypes.SetBank, (data: any) => {
         dispatch({
