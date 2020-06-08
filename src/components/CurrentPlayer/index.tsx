@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AvatarPlayer from '../AvatarPlayer';
 import CardDeck from '../CardDeck';
 import BetMoneyIcon from '../../assets/svg/bet-money.svg';
@@ -27,7 +27,7 @@ export const CurrentPlayer = (props: CurrentPlayerProps) => {
           />
           <div className='bet'>
             <p>$ {selectedPlayer.betAmount}</p>
-            <img src={BetMoneyIcon} />
+            <img src={BetMoneyIcon} alt='Bet Money' />
           </div>
           <div className='deck'>
             <CardDeck cards={selectedPlayer.cards} />

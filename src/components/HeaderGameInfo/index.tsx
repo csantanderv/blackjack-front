@@ -4,16 +4,14 @@ import PlayerPlayingIcon from '../../assets/svg/player-playing.svg';
 import LosingIcon from '../../assets/svg/losing.svg';
 import { AppContext } from '../../state/Store';
 import { EventTypes } from '../../services/socket/EventTypes';
-import { ActionTypes, PlayerType } from '../../state/StoreTypes';
+import { ActionTypes } from '../../state/StoreTypes';
 import './style.scss';
 
 const HeaderGameInfo = () => {
   const { state, dispatch } = useContext(AppContext);
   const { bank, connectedUser, currentPlayer, socket } = state;
 
-  useEffect(() => {
-    console.log('entro use effect HeaderGameInfo');
-  }, [connectedUser, bank]);
+  useEffect(() => {}, [connectedUser, bank]);
 
   useEffect(() => {
     if (socket && connectedUser && connectedUser.profile === 'PLAYER') {
@@ -36,7 +34,7 @@ const HeaderGameInfo = () => {
         }
       });
     }
-  }, [socket]);
+  }, [socket, connectedUser, dispatch]);
 
   useEffect(() => {}, [currentPlayer]);
 

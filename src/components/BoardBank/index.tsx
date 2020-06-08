@@ -39,7 +39,7 @@ const BoardBank = () => {
         });
       });
     }
-  }, [socket]);
+  }, [socket, dispatch]);
 
   const handleSelectedPlayer = (player: any) => {
     setSeletedPlayer(player);

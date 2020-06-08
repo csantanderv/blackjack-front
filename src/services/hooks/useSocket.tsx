@@ -21,7 +21,7 @@ export const useSocket = (
   };
 
   useEffect(() => {
-    if (user !== null && socket === null) {
+    if (user && socket === null) {
       try {
         const socket = socketIOClient(ConfigApp.backendUrl + '/gameEvents', {
           query: { ...user },
@@ -32,7 +32,7 @@ export const useSocket = (
         setError('Ocurrió un error al conectarse al servidor del juego');
       }
     }
-  }, [user]);
+  }, [user, socket]);
 
   return [socket, error, setSocketPlayer];
 };

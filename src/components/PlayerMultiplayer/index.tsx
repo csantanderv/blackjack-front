@@ -5,7 +5,6 @@ import LosingIcon from '../../assets/svg/losing.svg';
 import BetMoneyIcon from '../../assets/svg/bet-money.svg';
 import CardDeck from '../CardDeck';
 import { PlayerType } from '../../state/StoreTypes';
-import { EventTypes } from '../../services/socket/EventTypes';
 import '../../index.scss';
 import './style.scss';
 

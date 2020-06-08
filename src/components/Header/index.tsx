@@ -13,7 +13,7 @@ type HeaderProps = {
 };
 
 const Header = (props: HeaderProps) => {
-  const { state, dispatch } = useContext(AppContext);
+  const { dispatch } = useContext(AppContext);
   const history = useHistory();
 
   const logout = () => {

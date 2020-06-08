@@ -1,7 +1,5 @@
-import React, { useContext } from 'react';
 import Axios, { AxiosRequestConfig, AxiosInstance } from 'axios';
 import ConfigApp from '../../config/Config';
-import { AppContext } from '../../state/Store';
 
 const ApiClient = (token: string): AxiosInstance => {
   const config: AxiosRequestConfig = {

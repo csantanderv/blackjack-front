@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
-import './index.scss';
 import { AppProvider } from './state/Store';
 import BlackJackBoard from './BlackJackBoard';
 import NotFound from './components/NotFound';
 import ErrorPage from './components/ErrorPage';
-
-const ENDPOINT = 'http://127.0.0.1:4001';
+import './index.scss';
 
 function App() {
-  useEffect(() => {}, []);
-
   return (
     <AppProvider>
       <Router>

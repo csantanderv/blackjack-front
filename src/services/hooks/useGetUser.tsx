@@ -10,23 +10,22 @@ export const useGetUser = (
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      setIsLoading(true);
-      if (token && token !== '') {
-        const resp = await ApiClient(token).get('auth');
-        setUser(resp.data);
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        if (token && token !== '') {
+          const resp = await ApiClient(token).get('auth');
+          setUser(resp.data);
+        }
+      } catch (e) {
+        setError('Ocurrió un error al obtener el usuario');
+      } finally {
+        setIsLoading(false);
       }
-    } catch (e) {
-      console.log(e);
-      setError('Ocurrió un error al obtener el usuario');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    };
+
+    fetchData();
+  }, [token]);
 
   return [user, isLoading, error];
 };

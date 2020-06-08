@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext, Fragment } from 'react';
+import React, { useEffect, useContext, Fragment } from 'react';
 import Header from './components/Header';
 import BoardMultiplayer from './components/BoardMultiplayer';
 import BoardPlayer from './components/BoardPlayer';
 import BoardBank from './components/BoardBank';
 import { AppContext } from './state/Store';
 import { useHistory } from 'react-router-dom';
-import { ActionTypes, PlayerType } from './state/StoreTypes';
+import { ActionTypes } from './state/StoreTypes';
 import { useGetUser } from './services/hooks/useGetUser';
 import { useSocket } from './services/hooks/useSocket';
 import { EventTypes } from './services/socket/EventTypes';
@@ -31,11 +31,23 @@ const BlackJackBoard = (props: any) => {
       });
       history.push('/error');
     }
-  }, [errorUser]);
+  }, [errorUser, dispatch, history]);
 
   useEffect(() => {
-    console.log('use effect backjackboard');
-    if (user !== null) {
+    if (errorSocket !== '') {
+      dispatch({
+        type: ActionTypes.Error,
+        payload: {
+          isError: true,
+          msgError: 'El canal de comunicación presenta un problema',
+        },
+      });
+      history.push('/error');
+    }
+  }, [errorSocket, dispatch, history]);
+
+  useEffect(() => {
+    if (user && connectedUser === null) {
       dispatch({
         type: ActionTypes.SetConnectedUser,
         payload: {
@@ -55,11 +67,11 @@ const BlackJackBoard = (props: any) => {
       });
       setSocketPlayer({ id: user.id, profile: user.profile, name: user.name });
     }
-  }, [user]);
+  }, [user, dispatch, setSocketPlayer, connectedUser]);
 
   //TODO: Arreglar problema de toast, quizas borrar uno de los toast container
   useEffect(() => {
-    if (socket !== null) {
+    if (socket) {
       if (state.socket === null) {
         dispatch({
           type: ActionTypes.ConnectSocket,
@@ -76,13 +88,12 @@ const BlackJackBoard = (props: any) => {
           },
         });
         dispatchToast(data.name + ' se ha conectado');
-        console.log('ento al dispathc toast que webea');
       });
       socket.on(EventTypes.Disconnected, (data: any) => {
         dispatchToast(data);
       });
     }
-  }, [socket]);
+  }, [socket, dispatch, state.socket]);
 
   const handleLogout = () => {
     if (socket) {

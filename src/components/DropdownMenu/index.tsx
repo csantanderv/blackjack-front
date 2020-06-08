@@ -10,12 +10,10 @@ const DropdownMenu = () => {
   const [menuHeight, setMenuHeight] = useState(0);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
+  //TODO: ARREGLAR ESTE RANCHO
   useEffect(() => {
     if (dropdownRef.current) {
-      const node = dropdownRef.current;
       setMenuHeight(400);
-      //FIXME: Arregle la obtención del tamaño del div
-      //setMenuHeight(node.firstChild.offsetHeight);
     }
   }, []);
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, Fragment } from 'react';
+import React, { useContext, useEffect, Fragment } from 'react';
 import StandHandIcon from '../../assets/svg/stand-hand.svg';
 import HitHandIcon from '../../assets/svg/hit-hand.svg';
 import BetMoneyIcon from '../../assets/svg/bet-money.svg';
@@ -39,7 +39,7 @@ const BoardPlayer = () => {
         });
       });
     }
-  }, [socket]);
+  }, [socket, dispatch]);
 
   useEffect(() => {
     if (players && connectedUser) {
@@ -52,9 +52,10 @@ const BoardPlayer = () => {
             },
           });
         }
+        return true;
       });
     }
-  }, [players]);
+  }, [players, dispatch, connectedUser]);
 
   const handleStand = () => {
     if (currentPlayer && socket) {

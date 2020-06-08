@@ -2,12 +2,11 @@ import React, { useState, useEffect, useContext, Fragment } from 'react';
 import ShuffleCardIcon from '../../assets/svg/shuffle-cards.svg';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../state/Store';
-import ApiClient from '../../services/api/ApiClient';
 import { ActionTypes } from '../../state/StoreTypes';
+import { useLoginUser } from '../../services/hooks/useLoginUser';
 import '../../index.scss';
 import '../../input.scss';
 import './style.scss';
-import { useLoginUser } from '../../services/hooks/useLoginUser';
 
 const LoginPage = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -23,7 +22,7 @@ const LoginPage = () => {
     if (state && state.token && state.token !== '') {
       history.push('/game');
     }
-  }, []);
+  }, [state, history]);
 
   useEffect(() => {
     if (token !== '') {
@@ -36,7 +35,7 @@ const LoginPage = () => {
       localStorage.setItem('token', token);
       history.push('/game');
     }
-  }, [token]);
+  }, [token, dispatch, history]);
 
   useEffect(() => {
     if (error !== '') {
@@ -48,7 +47,7 @@ const LoginPage = () => {
         },
       });
     }
-  }, [error]);
+  }, [error, dispatch]);
 
   const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     if (user.email !== '' && user.password !== '') {

@@ -21,7 +21,7 @@ const BoardMultiplayer = () => {
         });
       });
     }
-  }, [socket]);
+  }, [socket, dispatch]);
 
   return players === null || players.length === 0 ? (
     <p>Esperando jugadores</p>

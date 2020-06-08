@@ -13,26 +13,25 @@ export const useLoginUser = (): [string, Function, boolean, string] => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    if (login !== null) {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const res = await ApiClient('').post('auth/login', login);
+        setToken(res.data.token);
+      } catch (e) {
+        setError('Los datos ingresados no son correctos');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (login) {
       fetchData();
     }
   }, [login]);
 
   const setLoginUser = (body: SetLoginUserProps) => {
     setLogin(body);
-  };
-
-  const fetchData = async () => {
-    try {
-      setIsLoading(true);
-      const res = await ApiClient('').post('auth/login', login);
-      setToken(res.data.token);
-    } catch (e) {
-      console.log(e);
-      setError('Los datos ingresados no son correctos');
-    } finally {
-      setIsLoading(false);
-    }
   };
 
   return [token, setLoginUser, isLoading, error];
