@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, Fragment, useState } from 'react';
+import React, { useContext, useEffect, Fragment } from 'react';
 import StandHandIcon from '../../assets/svg/stand-hand.svg';
 import HitHandIcon from '../../assets/svg/hit-hand.svg';
 import BetMoneyIcon from '../../assets/svg/bet-money.svg';
@@ -11,9 +11,9 @@ import { EventTypes } from '../../services/socket/EventTypes';
 import { IconCurrentResult } from '../IconCurrentResult';
 import BankCardsPlaying from '../BankCardsPlaying';
 import UserMsgs from '../UserMsgs';
+import useShowMsg from '../../services/hooks/useShowMsg';
 import '../../index.scss';
 import './style.scss';
-import useShowMsg from '../../services/hooks/useShowMsg';
 
 const BoardPlayer = () => {
   const { state, dispatch } = useContext(AppContext);

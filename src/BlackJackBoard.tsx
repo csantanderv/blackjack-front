@@ -55,7 +55,6 @@ const BlackJackBoard = (props: any) => {
             id: user.id,
             name: user.name,
             profile: user.profile,
-            playing: false,
             hiting: true,
             standing: true,
             totalAmountLost: 0,
@@ -69,31 +68,36 @@ const BlackJackBoard = (props: any) => {
     }
   }, [user, dispatch, setSocketPlayer, connectedUser]);
 
-  //TODO: Arreglar problema de toast, quizas borrar uno de los toast container
   useEffect(() => {
-    if (socket) {
-      if (state.socket === null) {
-        dispatch({
-          type: ActionTypes.ConnectSocket,
-          payload: {
-            socket: socket,
-          },
-        });
-      }
-      socket.on(EventTypes.PlayerConnected, (data: any) => {
-        dispatch({
-          type: ActionTypes.SetCurrentPlayer,
-          payload: {
-            currentPlayer: data,
-          },
-        });
-        dispatchToast(data.name + ' se ha conectado');
-      });
-      socket.on(EventTypes.Disconnected, (data: any) => {
-        dispatchToast(data);
+    if (socket && state.socket === null) {
+      dispatch({
+        type: ActionTypes.ConnectSocket,
+        payload: {
+          socket: socket,
+        },
       });
     }
-  }, [socket, dispatch, state.socket]);
+  }, [socket, state.socket, dispatch]);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on(EventTypes.PlayerConnected, (data: any) => {
+        if (state.currentPlayer === null) {
+          dispatch({
+            type: ActionTypes.SetCurrentPlayer,
+            payload: {
+              currentPlayer: data,
+            },
+          });
+          dispatchToast(data.name + ' se ha conectado');
+        }
+      });
+      /*       socket.on(EventTypes.Disconnected, (data: any) => {
+        dispatchToast(data);
+      });
+ */
+    }
+  }, [socket, dispatch, state.currentPlayer]);
 
   const handleLogout = () => {
     if (socket) {

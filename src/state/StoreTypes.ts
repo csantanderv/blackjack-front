@@ -7,7 +7,6 @@ export type PlayerType = {
   id: string;
   name: string;
   profile: string;
-  playing: boolean;
   totalAmountLost: number;
   hiting: boolean;
   standing: boolean;
@@ -48,7 +47,6 @@ export enum ActionTypes {
   GameBoard = 'SHOW_GAME_BOARD',
   Error = 'ERROR',
   UserLoaded = 'USER_LOADED',
-  //TODO: Hay que ver si newgame aplica, al parecer no se usará
   NewGame = 'NEW_GAME',
   GiveCard = 'GIVE_CARD',
   BankHitCard = 'BANK_HIT_CARD',

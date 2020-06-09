@@ -23,11 +23,12 @@ export const useSocket = (
   useEffect(() => {
     if (user && socket === null) {
       try {
-        const socket = socketIOClient(ConfigApp.backendUrl + '/gameEvents', {
+        console.log('se conecto al socket');
+        const so = socketIOClient(ConfigApp.backendUrl, {
           query: { ...user },
-          forceNew: true,
+          transports: ['websocket'],
         });
-        setSocket(socket);
+        setSocket(so);
       } catch (error) {
         setError('Ocurrió un error al conectarse al servidor del juego');
       }
