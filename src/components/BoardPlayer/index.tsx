@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, Fragment } from 'react';
+import React, { useContext, useEffect, Fragment, useState } from 'react';
 import StandHandIcon from '../../assets/svg/stand-hand.svg';
 import HitHandIcon from '../../assets/svg/hit-hand.svg';
 import BetMoneyIcon from '../../assets/svg/bet-money.svg';
@@ -10,11 +10,14 @@ import { ActionTypes, PlayerType } from '../../state/StoreTypes';
 import { EventTypes } from '../../services/socket/EventTypes';
 import { IconCurrentResult } from '../IconCurrentResult';
 import BankCardsPlaying from '../BankCardsPlaying';
+import UserMsgs from '../UserMsgs';
 import '../../index.scss';
 import './style.scss';
+import useShowMsg from '../../services/hooks/useShowMsg';
 
 const BoardPlayer = () => {
   const { state, dispatch } = useContext(AppContext);
+  const [showMsg, msg, setUserMsg] = useShowMsg();
   const { connectedUser, players, currentPlayer, bank, socket } = state;
 
   useEffect(() => {
@@ -57,21 +60,60 @@ const BoardPlayer = () => {
     }
   }, [players, dispatch, connectedUser]);
 
+  const validatePlay = () => {
+    if (currentPlayer) {
+      if (currentPlayer.betAmount === 0) {
+        return 'Primero apuesta, luego juegas';
+      }
+      if (currentPlayer.cards.length === 0) {
+        return 'La banca te tiene que dar cartas primero';
+      }
+    }
+    return '';
+  };
+
   const handleStand = () => {
     if (currentPlayer && socket) {
-      socket.emit(EventTypes.PlayerStand, currentPlayer);
+      const validMsg = validatePlay();
+      if (validMsg === '') {
+        setUserMsg('');
+        socket.emit(EventTypes.PlayerStand, currentPlayer);
+      } else {
+        setUserMsg(validMsg);
+      }
     }
+  };
+
+  const validateBet = () => {
+    if (currentPlayer) {
+      if (currentPlayer.betAmount === 0) {
+        return 'Apuesta moneas primeras';
+      }
+    }
+    return '';
   };
 
   const handleBet = () => {
     if (currentPlayer && socket) {
-      socket.emit(EventTypes.PlayerBet, currentPlayer);
+      const validMsg = validateBet();
+      if (validMsg === '') {
+        setUserMsg('');
+        socket.emit(EventTypes.PlayerBet, currentPlayer);
+      } else {
+        setUserMsg(validMsg);
+      }
     }
   };
 
   const handleHit = () => {
     if (currentPlayer && socket) {
-      socket.emit(EventTypes.PlayerHit, currentPlayer);
+      const validMsg = validatePlay();
+      if (validMsg === '') {
+        socket.emit(EventTypes.PlayerHit, currentPlayer);
+        setUserMsg('');
+      } else {
+        setUserMsg(validMsg);
+      }
     }
   };
 
@@ -89,12 +131,17 @@ const BoardPlayer = () => {
             </div>
           </Fragment>
         ) : null}
-        <PlayerBet />
-        <div className='game-buttons'>
-          <GameButton src={StandHandIcon} onClick={handleStand} />
-          <GameButton src={BetMoneyIcon} onClick={handleBet} />
-          <GameButton src={HitHandIcon} onClick={handleHit} />
-        </div>
+        {currentPlayer && currentPlayer.currentResult === 'PLAYING' ? (
+          <Fragment>
+            <PlayerBet />
+            <UserMsgs msg={msg} show={showMsg} />
+            <div className='game-buttons'>
+              <GameButton src={StandHandIcon} onClick={handleStand} />
+              <GameButton src={BetMoneyIcon} onClick={handleBet} />
+              <GameButton src={HitHandIcon} onClick={handleHit} />
+            </div>
+          </Fragment>
+        ) : null}
       </div>
       {/* <ToastMsg /> */}
     </div>

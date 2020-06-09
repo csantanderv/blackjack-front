@@ -98,7 +98,7 @@ const BlackJackBoard = (props: any) => {
   const handleLogout = () => {
     if (socket) {
       socket.emit(EventTypes.Logout);
-      //socket.disconnect();
+      socket.disconnect();
     }
     localStorage.setItem('token', '');
   };

@@ -6,10 +6,6 @@ import { ActionTypes } from '../../state/StoreTypes';
 import '../../index.scss';
 import './style.scss';
 
-type PlayerBetProps = {
-  onBetAmount(): void;
-};
-
 const PlayerBet = () => {
   const { state, dispatch } = useContext(AppContext);
   const { currentPlayer } = state;

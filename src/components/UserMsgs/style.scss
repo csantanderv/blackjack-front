@@ -1,0 +1,11 @@
+.user-msg {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+
+    p {
+        font-size: 12px;
+        color: gray;
+    }
+}
