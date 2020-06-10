@@ -20,7 +20,7 @@ const BoardBank = () => {
   const { state, dispatch } = useContext(AppContext);
   const [showMsg, msg, setUserMsg] = useShowMsg();
   const [selectedPlayer, setSeletedPlayer] = useState<PlayerType | null>(null);
-  const { bank, players, socket } = state;
+  const { bank, players, socket, started } = state;
 
   useEffect(() => {
     if (socket !== null) {
@@ -38,6 +38,22 @@ const BoardBank = () => {
           type: ActionTypes.SetBank,
           payload: {
             bank: data,
+          },
+        });
+      });
+      socket.on(EventTypes.GameStarted, (data: any) => {
+        dispatch({
+          type: ActionTypes.SetStarted,
+          payload: {
+            started: true,
+          },
+        });
+      });
+      socket.on(EventTypes.GameFinished, (data: any) => {
+        dispatch({
+          type: ActionTypes.SetStarted,
+          payload: {
+            started: false,
           },
         });
       });
@@ -64,6 +80,10 @@ const BoardBank = () => {
       }
       if (isSomeonePlaying) {
         return 'Aún hay jugadores jugando';
+      }
+
+      if (started) {
+        return 'Hay un juego en curso';
       }
 
       return '';
@@ -173,7 +193,9 @@ const BoardBank = () => {
           />
           <UserMsgs msg={msg} show={showMsg} />
           <div className='game-buttons'>
-            <GameButton src={PlayIcon} onClick={handlePlay} />
+            {!started ? (
+              <GameButton src={PlayIcon} onClick={handlePlay} />
+            ) : null}
             <GameButton src={HitHandIcon} onClick={handleHit} />
             <GameButton src={GivecCardIcon} onClick={handleGiveCard} />
             <GameButton src={ShuffleCardsIcon} onClick={handleShuffleCards} />

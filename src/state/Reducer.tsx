@@ -79,6 +79,11 @@ export const gameReducer = (state: InitialStateType, action: GameActions) => {
         ...state,
         connectedUser: action.payload.connectedUser,
       };
+    case ActionTypes.SetStarted:
+      return {
+        ...state,
+        started: action.payload.started,
+      };
     default:
       return state;
   }

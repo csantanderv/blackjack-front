@@ -16,6 +16,7 @@ const initialState = {
   currentPlayer: null,
   bank: null,
   socket: null,
+  started: false,
 };
 
 export const AppContext = createContext<{
