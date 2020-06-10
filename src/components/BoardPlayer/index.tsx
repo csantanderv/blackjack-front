@@ -32,12 +32,27 @@ const BoardPlayer = () => {
           });
         }
       });
-
       socket.on(EventTypes.SetBank, (data: any) => {
         dispatch({
           type: ActionTypes.SetBank,
           payload: {
             bank: data,
+          },
+        });
+      });
+      socket.on(EventTypes.GameStarted, (data: any) => {
+        dispatch({
+          type: ActionTypes.SetStarted,
+          payload: {
+            started: true,
+          },
+        });
+      });
+      socket.on(EventTypes.GameFinished, (data: any) => {
+        dispatch({
+          type: ActionTypes.SetStarted,
+          payload: {
+            started: false,
           },
         });
       });

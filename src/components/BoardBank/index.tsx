@@ -110,6 +110,10 @@ const BoardBank = () => {
         return 'Hay jugadores aún jugando';
       }
 
+      if (!started) {
+        return 'Aún no comienza la partida';
+      }
+
       return '';
     }
   };
@@ -127,6 +131,10 @@ const BoardBank = () => {
       }
       if (selectedPlayer.currentResult === 'WINNER') {
         return 'Este jugador ya te ganó';
+      }
+
+      if (!started) {
+        return 'Aún no comienza la partida';
       }
 
       return '';
@@ -167,7 +175,11 @@ const BoardBank = () => {
     }
   };
 
-  const handleShuffleCards = () => {};
+  const handleShuffleCards = () => {
+    if (socket) {
+      socket.emit(EventTypes.ResetGame);
+    }
+  };
 
   return (
     <Fragment>
@@ -198,7 +210,9 @@ const BoardBank = () => {
             ) : null}
             <GameButton src={HitHandIcon} onClick={handleHit} />
             <GameButton src={GivecCardIcon} onClick={handleGiveCard} />
-            <GameButton src={ShuffleCardsIcon} onClick={handleShuffleCards} />
+            {started ? (
+              <GameButton src={ShuffleCardsIcon} onClick={handleShuffleCards} />
+            ) : null}
           </div>
         </div>
       </div>
