@@ -61,7 +61,15 @@ const BoardBank = () => {
   }, [socket, dispatch]);
 
   const handleSelectedPlayer = (player: any) => {
-    setSeletedPlayer(player);
+    if (player) {
+      if (player.hiting) {
+        setSeletedPlayer(player);
+      } else {
+        setUserMsg(
+          'Solo puedes seleccionar un jugador que esté pidiendo cartas',
+        );
+      }
+    }
   };
 
   const handleDeselectPlayer = () => {
@@ -94,7 +102,10 @@ const BoardBank = () => {
     if (bank) {
       const isNotCards = bank.cards && bank.cards.length === 0;
       const isSomeonePlaying =
-        players.findIndex((item) => item.hiting || item.standing) !== -1;
+        players.findIndex(
+          (item) =>
+            item.hiting || (item.currentResult === 'PLAYING' && !item.standing),
+        ) !== -1;
       const isBetIncomplete =
         players.findIndex((item) => item.betAmount === 0) !== -1;
 
@@ -117,7 +128,7 @@ const BoardBank = () => {
       return '';
     }
   };
-
+  // TODO: validar que los jugadores standing tengan cartas <= al límite de jugador (16?)
   const validateGiveCard = () => {
     if (bank && selectedPlayer) {
       if (!selectedPlayer.hiting) {
@@ -139,6 +150,22 @@ const BoardBank = () => {
 
       return '';
     }
+  };
+
+  const validateShuffle = () => {
+    // TODO: Falta validar cuando la banca gana y los jugadores quedan en estado PLAYING, en ese caso la weá caga porque no se puede entregar la carta pa terminar con el juego
+    const isSomeonePlaying =
+      players.findIndex((item) => item.currentResult === 'PLAYING') !== -1;
+
+    if (isSomeonePlaying) {
+      return 'El juego está en curso aún';
+    }
+
+    /*     if (bank && bank.currentResult === 'PLAYING') {
+      return 'Ud aún no termina de jugar';
+    }
+ */
+    return '';
   };
 
   const handlePlay = () => {
@@ -177,7 +204,11 @@ const BoardBank = () => {
 
   const handleShuffleCards = () => {
     if (socket) {
-      socket.emit(EventTypes.ResetGame);
+      const validMsg = validateShuffle();
+      setUserMsg(validMsg);
+      if (validMsg === '') {
+        socket.emit(EventTypes.ResetGame);
+      }
     }
   };
 
@@ -208,8 +239,13 @@ const BoardBank = () => {
             {!started ? (
               <GameButton src={PlayIcon} onClick={handlePlay} />
             ) : null}
-            <GameButton src={HitHandIcon} onClick={handleHit} />
-            <GameButton src={GivecCardIcon} onClick={handleGiveCard} />
+            {bank && bank.currentResult === 'PLAYING' ? (
+              <Fragment>
+                <GameButton src={HitHandIcon} onClick={handleHit} />
+                <GameButton src={GivecCardIcon} onClick={handleGiveCard} />
+              </Fragment>
+            ) : null}
+
             {started ? (
               <GameButton src={ShuffleCardsIcon} onClick={handleShuffleCards} />
             ) : null}

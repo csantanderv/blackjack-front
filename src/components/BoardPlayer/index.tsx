@@ -18,7 +18,14 @@ import './style.scss';
 const BoardPlayer = () => {
   const { state, dispatch } = useContext(AppContext);
   const [showMsg, msg, setUserMsg] = useShowMsg();
-  const { connectedUser, players, currentPlayer, bank, socket } = state;
+  const {
+    connectedUser,
+    players,
+    currentPlayer,
+    bank,
+    socket,
+    started,
+  } = state;
 
   useEffect(() => {
     if (socket) {
@@ -102,7 +109,7 @@ const BoardPlayer = () => {
   const validateBet = () => {
     if (currentPlayer) {
       if (currentPlayer.betAmount === 0) {
-        return 'Apuesta moneas primeras';
+        return 'Apuesta moneas primero';
       }
     }
     return '';
@@ -148,11 +155,13 @@ const BoardPlayer = () => {
         ) : null}
         {currentPlayer && currentPlayer.currentResult === 'PLAYING' ? (
           <Fragment>
-            <PlayerBet />
+            {!started ? <PlayerBet /> : null}
             <UserMsgs msg={msg} show={showMsg} />
             <div className='game-buttons'>
               <GameButton src={StandHandIcon} onClick={handleStand} />
-              <GameButton src={BetMoneyIcon} onClick={handleBet} />
+              {!started ? (
+                <GameButton src={BetMoneyIcon} onClick={handleBet} />
+              ) : null}
               <GameButton src={HitHandIcon} onClick={handleHit} />
             </div>
           </Fragment>

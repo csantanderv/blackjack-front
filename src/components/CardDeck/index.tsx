@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../index.scss';
 import './style.scss';
+import { CardValue } from '../../config/Config';
 
 type CarType = {
   card: string;
@@ -12,10 +13,12 @@ type CardDeckType = {
 };
 
 const CardDeck = (props: CardDeckType) => {
-  const cards = props.cards.map((card, index) => {
-    return !card.hidden ? (
+  const cards = props.cards.map((card: CarType, index) => {
+    const cardValue = CardValue.find((item) => item.card === card.card);
+
+    return !card.hidden && cardValue ? (
       <div key={index} className='card'>
-        <p>{card.card}</p>
+        <p>{cardValue.value}</p>
       </div>
     ) : (
       <div key={index} className='card card-hidden'>

@@ -58,6 +58,7 @@ const BlackJackBoard = (props: any) => {
             hiting: true,
             standing: true,
             totalAmountLost: 0,
+            totalAmountWin: 0,
             betAmount: 0,
             currentResult: 'PLAYING',
             cards: [],
