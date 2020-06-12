@@ -161,10 +161,6 @@ const BoardBank = () => {
       return 'El juego está en curso aún';
     }
 
-    /*     if (bank && bank.currentResult === 'PLAYING') {
-      return 'Ud aún no termina de jugar';
-    }
- */
     return '';
   };
 

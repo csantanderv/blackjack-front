@@ -5,6 +5,7 @@ import LosingIcon from '../../assets/svg/losing.svg';
 import BetMoneyIcon from '../../assets/svg/bet-money.svg';
 import CardDeck from '../CardDeck';
 import { PlayerType } from '../../state/StoreTypes';
+import CoinStackIncon from '../../assets/svg/coin-stack.svg';
 import '../../index.scss';
 import './style.scss';
 
@@ -39,6 +40,10 @@ const PlayerMultiplayer = (props: PlayerMultiplayerProps) => {
       <div className='detail'>
         <p>{player.name}</p>
         <ImgResult player={player} />
+      </div>
+      <div className='total-win'>
+        <img src={CoinStackIncon} className='icon-lost' alt='Ganado' />
+        <p>$ {player.totalAmountWin}</p>
       </div>
       <div className='total-lost'>
         <img src={LosingIcon} alt='Perdido' />

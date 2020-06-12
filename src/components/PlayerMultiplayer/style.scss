@@ -26,6 +26,25 @@
         }
     }
 
+    .total-win {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+
+        p {
+            margin: 0px 0px 0px 5px;
+            color: green;
+            font-weight: bold;
+        }
+
+        img {
+            height: 20px;
+        }
+    }
+
+
     .total-lost {
         display: flex;
         flex-direction: row;

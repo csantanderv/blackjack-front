@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, Fragment } from 'react';
 import BankIcon from '../../assets/svg/bank.svg';
+import CoinStackIncon from '../../assets/svg/coin-stack.svg';
 import PlayerPlayingIcon from '../../assets/svg/player-playing.svg';
 import LosingIcon from '../../assets/svg/losing.svg';
 import { AppContext } from '../../state/Store';
@@ -45,6 +46,10 @@ const HeaderGameInfo = () => {
           <img src={BankIcon} alt='Carta' />
           <div className='player-info'>
             <h2 className='name'>{bank.name}</h2>
+            <div className='total-win'>
+              <img src={CoinStackIncon} className='icon-lost' alt='Ganado' />
+              <h2 className='mount'>$ {bank.totalAmountWin}</h2>
+            </div>
             <div className='total-lost'>
               <img src={LosingIcon} className='icon-lost' alt='Perdido' />
               <h2 className='mount'>$ {bank.totalAmountLost}</h2>
@@ -57,6 +62,10 @@ const HeaderGameInfo = () => {
           <img src={PlayerPlayingIcon} alt='Carta' />
           <div className='player-info'>
             <h2 className='name'>{currentPlayer.name}</h2>
+            <div className='total-win'>
+              <img src={CoinStackIncon} className='icon-lost' alt='Ganado' />
+              <h2 className='mount'>$ {currentPlayer.totalAmountWin}</h2>
+            </div>
             <div className='total-lost'>
               <img src={LosingIcon} className='icon-lost' alt='Perdido' />
               <h2 className='mount'>$ {currentPlayer.totalAmountLost}</h2>
