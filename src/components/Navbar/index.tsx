@@ -1,16 +1,8 @@
-import React, { useState, FC, ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 import './style.scss';
-import HeaderGameInfo from '../HeaderGameInfo';
 
 export const Navbar: FC = (props) => {
-  return (
-    <div className='navbar-container'>
-      <HeaderGameInfo />
-      <nav className='navbar'>
-        <ul className='navbar-nav'>{props.children}</ul>
-      </nav>
-    </div>
-  );
+  return <div className='navbar-container'>{props.children}</div>;
 };
 
 type NavItemProps = {
@@ -19,16 +11,13 @@ type NavItemProps = {
 };
 
 export const NavItem: FC<NavItemProps> = (props) => {
-  const [open, setOpen] = useState(false);
-
   const handleClick = (event: any) => {
     event.preventDefault();
-    setOpen(!open);
     props.onClick();
   };
 
   return (
-    <li className='nav-item'>
+    <div className='nav-item'>
       <a
         href='#/'
         className='icon-button-menu'
@@ -36,7 +25,6 @@ export const NavItem: FC<NavItemProps> = (props) => {
       >
         {props.icon}
       </a>
-      {open && props.children}
-    </li>
+    </div>
   );
 };

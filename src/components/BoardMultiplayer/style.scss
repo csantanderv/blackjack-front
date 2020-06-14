@@ -1,11 +1,12 @@
-.board-container {
-    min-width: 320px;
-    padding: 20px 0 20px 0;
+.board-multiplayer {
     background-color: var(--bg);
     border: var(--border);
     border-radius: var(--border-radius);
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    justify-content: space-around;
+}
 
+.multiplayer-row {
+    flex-grow: 1;
 }

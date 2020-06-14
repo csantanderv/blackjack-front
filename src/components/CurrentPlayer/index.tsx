@@ -18,7 +18,7 @@ export const CurrentPlayer = (props: CurrentPlayerProps) => {
 
   return (
     <div className='current-player-info'>
-      {selectedPlayer !== null ? (
+      {selectedPlayer !== null && selectedPlayer.hiting ? (
         <div className='current-player'>
           <AvatarPlayer
             player={selectedPlayer}
@@ -35,7 +35,7 @@ export const CurrentPlayer = (props: CurrentPlayerProps) => {
         </div>
       ) : (
         <div className='msg-no-player'>
-          <h3> Selecciona un jugador </h3>
+          <p> Selecciona jugador que esté pidiendo </p>
         </div>
       )}
     </div>

@@ -8,14 +8,15 @@ import { PlayerType } from '../../state/StoreTypes';
 import CoinStackIncon from '../../assets/svg/coin-stack.svg';
 import '../../index.scss';
 import './style.scss';
+import { IconCurrentResult } from '../IconCurrentResult';
 
-type PlayerMultiplayerProps = {
+type ImgResultProps = {
   player: PlayerType;
 };
 
-//TODO: Unificar tratamiento resultado
-const ImgResult: FC<PlayerMultiplayerProps> = (props) => {
-  switch (props.player.currentResult) {
+const ImgResult: FC<ImgResultProps> = (props) => {
+  const { player } = props;
+  switch (player.currentResult) {
     case 'WINNER':
       return <img src={StackCoinIcon} alt='Wine' />;
     case 'LOSER':
@@ -31,12 +32,20 @@ const ImgResult: FC<PlayerMultiplayerProps> = (props) => {
   }
 };
 
+type PlayerMultiplayerProps = {
+  player: PlayerType;
+  onClick(player: PlayerType): void;
+};
+
 const PlayerMultiplayer = (props: PlayerMultiplayerProps) => {
-  const { player } = props;
-  // TODO: Falta agregar icono para jugando
+  const { player, onClick } = props;
+  const handleClick = () => {
+    onClick(player);
+  };
   return (
-    <div className='player-multiplayer'>
+    <div className='player-multiplayer' onClick={handleClick}>
       <CardDeck cards={player.cards} />
+      <IconCurrentResult player={player} className='icon-current-result' />
       <div className='detail'>
         <p>{player.name}</p>
         <ImgResult player={player} />

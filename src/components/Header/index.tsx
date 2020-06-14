@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { ReactComponent as MenuIcon } from '../../assets/svg/menu-icon.svg';
 import { ReactComponent as QuitIcon } from '../../assets/svg/quit.svg';
 import { Navbar, NavItem } from '../../components/Navbar';
-import '../../index.scss';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../state/Store';
 import { ActionTypes } from '../../state/StoreTypes';
+import '../../index.scss';
+import HeaderGameInfo from '../HeaderGameInfo';
 
 type HeaderProps = {
   onLogout(): void;
@@ -28,6 +28,7 @@ const Header = (props: HeaderProps) => {
 
   return (
     <Navbar>
+      <HeaderGameInfo />
       <NavItem icon={<QuitIcon />} onClick={logout} />
     </Navbar>
   );

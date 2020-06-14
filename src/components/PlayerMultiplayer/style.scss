@@ -1,7 +1,4 @@
 .player-multiplayer {
-    margin-top: 20px;
-    padding: 5px;
-    width: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,14 +24,12 @@
     }
 
     .total-win {
-        margin-top: 10px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: baseline;
 
         p {
-            margin: 0px 0px 0px 5px;
             color: green;
             font-weight: bold;
         }
@@ -52,7 +47,6 @@
         align-items: baseline;
 
         p {
-            margin: 0px 0px 0px 5px;
             color: red;
             font-weight: bold;
         }
@@ -69,7 +63,6 @@
         align-items: baseline;
 
         p {
-            margin: 0px 0px 0px 5px;
             color: green;
             font-weight: bold;
         }
@@ -78,6 +71,10 @@
             height: 20px;
         }
 
+    }
+
+    .icon-current-result {
+        height: 20px;
     }
 
 }

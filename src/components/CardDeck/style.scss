@@ -1,13 +1,10 @@
 .card-deck-player {
-    margin: 5px 5px 5px 5px;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-content: center;
 
     .card {
-        margin: 2px 2px;
-        padding: 5px 5px;
         display: flex;
         justify-content: center;
         width: 20px;

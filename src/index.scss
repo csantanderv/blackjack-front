@@ -3,10 +3,8 @@
   --bg-accent: #484a4d;
   --text-color: #dadce1;
   --nav-size: 60px;
-  --border: 1px solid #474a4d;
   --border-red: 2px solid red;
   --border-green: 2px solid green;
-  --border-radius: 8px;
   --speed: 500ms;
   --white: #afafaf;
   --red: #e31b23;
@@ -54,7 +52,7 @@ label {
 }
 
 body {
-  margin: 0;
+  margin: 0 0 0 0;
   background: #151616;
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -90,27 +88,21 @@ body {
 }
 
 .main-content {
-  margin: 60px 0 0 0;
-  padding: 10px 20px 20px 20px;
   display: flex;
+  height: 100vh;
   flex-direction: column;
-  justify-content: center;
 }
 
-
-.item-container {
-  margin: 20px 20px 20px 20px;
+.row-content {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-.game-options {
-  padding: 20px 0 20px 0;
+.board-for-playing {
   background-color: var(--bg);
-  border: var(--border);
-  border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -118,7 +110,6 @@ body {
 }
 
 .game-buttons {
-  padding: 20px 10px 20px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;

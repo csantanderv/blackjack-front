@@ -29,6 +29,7 @@ export type InitialStateType = {
   bank: PlayerType | null;
   currentPlayer: PlayerType | null;
   connectedUser: PlayerType | null;
+  selectedPlayer: PlayerType | null;
   socket: SocketIOClient.Socket | null;
   started: boolean;
 };
@@ -62,6 +63,7 @@ export enum ActionTypes {
   SetCurrentPlayer = 'SET_CURRENT_PLAYER',
   SetConnectedUser = 'SET_CONNECTED_USER',
   SetStarted = 'SetStarted',
+  SetSelectedPlayer = 'SetSelectedPlayer',
 }
 
 export type GamePayload = {
@@ -114,6 +116,9 @@ export type GamePayload = {
   };
   [ActionTypes.SetStarted]: {
     started: boolean;
+  };
+  [ActionTypes.SetSelectedPlayer]: {
+    selectedPlayer: PlayerType | null;
   };
 };
 

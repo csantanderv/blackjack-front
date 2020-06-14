@@ -1,14 +1,13 @@
-import React, { useState, useContext, Fragment, useEffect } from 'react';
+import React, { useContext, Fragment, useEffect } from 'react';
 import HitHandIcon from '../../assets/svg/hit-hand.svg';
 import GivecCardIcon from '../../assets/svg/give-card.svg';
 import PlayIcon from '../../assets/svg/play.svg';
 import ShuffleCardsIcon from '../../assets/svg/shuffle-cards.svg';
-import PlayersPlaying from '../PlayersPlaying';
 import GameButton from '../GameButton';
 import { CurrentPlayer } from '../CurrentPlayer';
 import { AppContext } from '../../state/Store';
 import CardDeck from '../CardDeck';
-import { ActionTypes, PlayerType } from '../../state/StoreTypes';
+import { ActionTypes } from '../../state/StoreTypes';
 import { EventTypes } from '../../services/socket/EventTypes';
 import { IconCurrentResult } from '../IconCurrentResult';
 import useShowMsg from '../../services/hooks/useShowMsg';
@@ -19,8 +18,16 @@ import './style.scss';
 const BoardBank = () => {
   const { state, dispatch } = useContext(AppContext);
   const [showMsg, msg, setUserMsg] = useShowMsg();
-  const [selectedPlayer, setSeletedPlayer] = useState<PlayerType | null>(null);
-  const { bank, players, socket, started } = state;
+  const { bank, players, socket, started, selectedPlayer } = state;
+
+  const handleDeselectPlayer = () => {
+    dispatch({
+      type: ActionTypes.SetSelectedPlayer,
+      payload: {
+        selectedPlayer: null,
+      },
+    });
+  };
 
   useEffect(() => {
     if (socket !== null) {
@@ -59,22 +66,6 @@ const BoardBank = () => {
       });
     }
   }, [socket, dispatch]);
-
-  const handleSelectedPlayer = (player: any) => {
-    if (player) {
-      if (player.hiting) {
-        setSeletedPlayer(player);
-      } else {
-        setUserMsg(
-          'Solo puedes seleccionar un jugador que esté pidiendo cartas',
-        );
-      }
-    }
-  };
-
-  const handleDeselectPlayer = () => {
-    setSeletedPlayer(null);
-  };
 
   const validatePlay = () => {
     if (players) {
@@ -210,8 +201,8 @@ const BoardBank = () => {
 
   return (
     <Fragment>
-      <div className='item-container'>
-        <div className='game-options'>
+      <div className='row-content'>
+        <div className='board-for-playing'>
           {bank ? (
             <Fragment>
               <div className='deck'>
@@ -226,25 +217,22 @@ const BoardBank = () => {
             selectedPlayer={selectedPlayer}
             onDeselectPlayer={handleDeselectPlayer}
           />
-          <PlayersPlaying
-            players={players.filter((p) => p.betAmount > 0)}
-            onSelectedPlayer={handleSelectedPlayer}
-          />
           <UserMsgs msg={msg} show={showMsg} />
           <div className='game-buttons'>
-            {!started ? (
-              <GameButton src={PlayIcon} onClick={handlePlay} />
-            ) : null}
-            {bank && bank.currentResult === 'PLAYING' ? (
+            {started ? (
               <Fragment>
                 <GameButton src={HitHandIcon} onClick={handleHit} />
                 <GameButton src={GivecCardIcon} onClick={handleGiveCard} />
+                <GameButton
+                  src={ShuffleCardsIcon}
+                  onClick={handleShuffleCards}
+                />
               </Fragment>
-            ) : null}
-
-            {started ? (
-              <GameButton src={ShuffleCardsIcon} onClick={handleShuffleCards} />
-            ) : null}
+            ) : (
+              <Fragment>
+                <GameButton src={PlayIcon} onClick={handlePlay} />
+              </Fragment>
+            )}
           </div>
         </div>
       </div>

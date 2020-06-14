@@ -84,6 +84,11 @@ export const gameReducer = (state: InitialStateType, action: GameActions) => {
         ...state,
         started: action.payload.started,
       };
+    case ActionTypes.SetSelectedPlayer:
+      return {
+        ...state,
+        selectedPlayer: action.payload.selectedPlayer,
+      };
     default:
       return state;
   }

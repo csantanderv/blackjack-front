@@ -140,8 +140,8 @@ const BoardPlayer = () => {
   };
 
   return (
-    <div className='item-container'>
-      <div className='game-options'>
+    <div className='row-content'>
+      <div className='board-for-playing'>
         {bank ? <BankCardsPlaying bank={bank} /> : null}
         {currentPlayer ? (
           <Fragment>
@@ -153,21 +153,27 @@ const BoardPlayer = () => {
             </div>
           </Fragment>
         ) : null}
-        {currentPlayer && currentPlayer.currentResult === 'PLAYING' ? (
-          <Fragment>
-            {!started ? <PlayerBet /> : null}
-            <UserMsgs msg={msg} show={showMsg} />
-            <div className='game-buttons'>
-              <GameButton src={StandHandIcon} onClick={handleStand} />
-              {!started ? (
-                <GameButton src={BetMoneyIcon} onClick={handleBet} />
-              ) : null}
-              <GameButton src={HitHandIcon} onClick={handleHit} />
-            </div>
-          </Fragment>
-        ) : null}
+        <div>
+          <UserMsgs msg={msg} show={showMsg} />
+        </div>
+        <div className='game-buttons'>
+          {currentPlayer && currentPlayer.currentResult === 'PLAYING' ? (
+            <Fragment>
+              {started ? (
+                <Fragment>
+                  <GameButton src={StandHandIcon} onClick={handleStand} />
+                  <GameButton src={HitHandIcon} onClick={handleHit} />
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <GameButton src={BetMoneyIcon} onClick={handleBet} />
+                  <PlayerBet />
+                </Fragment>
+              )}
+            </Fragment>
+          ) : null}
+        </div>
       </div>
-      {/* <ToastMsg /> */}
     </div>
   );
 };
