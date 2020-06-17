@@ -51,7 +51,7 @@ const PlayerMultiplayer = (props: PlayerMultiplayerProps) => {
         <ImgResult player={player} />
       </div>
       <div className='total-win'>
-        <img src={CoinStackIncon} className='icon-lost' alt='Ganado' />
+        <img src={CoinStackIncon} alt='Ganado' />
         <p>$ {player.totalAmountWin}</p>
       </div>
       <div className='total-lost'>

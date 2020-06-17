@@ -108,36 +108,6 @@ const BoardMultiplayer = () => {
             />
           );
         })}
-
-        {players.map((player, index) => {
-          return (
-            <PlayerMultiplayer
-              key={index}
-              player={player}
-              onClick={handlePlayer}
-            />
-          );
-        })}
-
-        {players.map((player, index) => {
-          return (
-            <PlayerMultiplayer
-              key={index}
-              player={player}
-              onClick={handlePlayer}
-            />
-          );
-        })}
-
-        {players.map((player, index) => {
-          return (
-            <PlayerMultiplayer
-              key={index}
-              player={player}
-              onClick={handlePlayer}
-            />
-          );
-        })}
       </div>
     </div>
   );

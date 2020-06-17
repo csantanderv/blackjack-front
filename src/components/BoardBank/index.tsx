@@ -38,7 +38,12 @@ const BoardBank = () => {
             players: data,
           },
         });
-        handleDeselectPlayer();
+        dispatch({
+          type: ActionTypes.SetSelectedPlayer,
+          payload: {
+            selectedPlayer: null,
+          },
+        });
       });
       socket.on(EventTypes.SetBank, (data: any) => {
         dispatch({
@@ -221,16 +226,33 @@ const BoardBank = () => {
           <div className='game-buttons'>
             {started ? (
               <Fragment>
-                <GameButton src={HitHandIcon} onClick={handleHit} />
-                <GameButton src={GivecCardIcon} onClick={handleGiveCard} />
                 <GameButton
+                  type='primary'
+                  size='medium'
+                  src={HitHandIcon}
+                  onClick={handleHit}
+                />
+                <GameButton
+                  type='primary'
+                  size='medium'
+                  src={GivecCardIcon}
+                  onClick={handleGiveCard}
+                />
+                <GameButton
+                  type='primary'
+                  size='medium'
                   src={ShuffleCardsIcon}
                   onClick={handleShuffleCards}
                 />
               </Fragment>
             ) : (
               <Fragment>
-                <GameButton src={PlayIcon} onClick={handlePlay} />
+                <GameButton
+                  type='primary'
+                  size='medium'
+                  src={PlayIcon}
+                  onClick={handlePlay}
+                />
               </Fragment>
             )}
           </div>

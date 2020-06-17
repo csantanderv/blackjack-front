@@ -161,13 +161,28 @@ const BoardPlayer = () => {
             <Fragment>
               {started ? (
                 <Fragment>
-                  <GameButton src={StandHandIcon} onClick={handleStand} />
-                  <GameButton src={HitHandIcon} onClick={handleHit} />
+                  <GameButton
+                    type='primary'
+                    size='medium'
+                    src={StandHandIcon}
+                    onClick={handleStand}
+                  />
+                  <GameButton
+                    type='primary'
+                    size='medium'
+                    src={HitHandIcon}
+                    onClick={handleHit}
+                  />
                 </Fragment>
               ) : (
                 <Fragment>
-                  <GameButton src={BetMoneyIcon} onClick={handleBet} />
                   <PlayerBet />
+                  <GameButton
+                    type='primary'
+                    size='medium'
+                    src={BetMoneyIcon}
+                    onClick={handleBet}
+                  />
                 </Fragment>
               )}
             </Fragment>

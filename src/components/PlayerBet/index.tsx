@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from 'react';
-import CoinUpIcon from '../../assets/svg/coin-up.svg';
-import CoinDownIcon from '../../assets/svg/coin-down.svg';
+import PlusIcon from '../../assets/svg/plus.svg';
+import RestIcon from '../../assets/svg/rest.svg';
 import { AppContext } from '../../state/Store';
 import { ActionTypes } from '../../state/StoreTypes';
 import '../../index.scss';
 import './style.scss';
+import GameButton from '../GameButton';
 
 const PlayerBet = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -31,31 +32,27 @@ const PlayerBet = () => {
 
   return currentPlayer ? (
     <div className='bet-container'>
-      <div className='icon-coin'>
-        <img
-          src={CoinUpIcon}
-          onClick={(e: any) => {
-            e.preventDefault();
-            handleChange(100);
-          }}
-          alt='Apuesta Más'
-        />
-      </div>
+      <GameButton
+        type='primary'
+        size='small'
+        src={PlusIcon}
+        onClick={() => {
+          handleChange(100);
+        }}
+      />
 
       <div className='bet-amount'>
         <h1>$ {currentPlayer.betAmount}</h1>
       </div>
 
-      <div className='icon-coin'>
-        <img
-          src={CoinDownIcon}
-          onClick={(e: any) => {
-            e.preventDefault();
-            handleChange(-100);
-          }}
-          alt='Apuesta Menos'
-        />
-      </div>
+      <GameButton
+        type='primary'
+        size='small'
+        src={RestIcon}
+        onClick={() => {
+          handleChange(-100);
+        }}
+      />
     </div>
   ) : null;
 };
