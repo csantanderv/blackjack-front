@@ -1,6 +1,4 @@
-import React, { FC } from 'react';
-import StackCoinIcon from '../../assets/svg/stack-coin.svg';
-import EmojiAngyIcon from '../../assets/svg/emoji-angry.svg';
+import React from 'react';
 import LosingIcon from '../../assets/svg/losing.svg';
 import BetMoneyIcon from '../../assets/svg/bet-money.svg';
 import CardDeck from '../CardDeck';
@@ -12,24 +10,6 @@ import { IconCurrentResult } from '../IconCurrentResult';
 
 type ImgResultProps = {
   player: PlayerType;
-};
-
-const ImgResult: FC<ImgResultProps> = (props) => {
-  const { player } = props;
-  switch (player.currentResult) {
-    case 'WINNER':
-      return <img src={StackCoinIcon} alt='Wine' />;
-    case 'LOSER':
-      return <img src={EmojiAngyIcon} alt='Wine' />;
-    case 'PLAYING':
-      return (
-        <p>
-          <strong> </strong>
-        </p>
-      );
-    default:
-      return null;
-  }
 };
 
 type PlayerMultiplayerProps = {
@@ -48,7 +28,6 @@ const PlayerMultiplayer = (props: PlayerMultiplayerProps) => {
       <IconCurrentResult player={player} className='icon-current-result' />
       <div className='detail'>
         <p>{player.name}</p>
-        <ImgResult player={player} />
       </div>
       <div className='total-win'>
         <img src={CoinStackIncon} alt='Ganado' />

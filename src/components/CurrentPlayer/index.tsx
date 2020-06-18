@@ -1,5 +1,4 @@
 import React from 'react';
-import AvatarPlayer from '../AvatarPlayer';
 import CardDeck from '../CardDeck';
 import BetMoneyIcon from '../../assets/svg/bet-money.svg';
 import './style.scss';
@@ -12,19 +11,12 @@ type CurrentPlayerProps = {
 
 export const CurrentPlayer = (props: CurrentPlayerProps) => {
   const { selectedPlayer } = props;
-  const handleClick = () => {
-    props.onDeselectPlayer();
-  };
 
   return (
     <div className='current-player-info'>
-      {selectedPlayer !== null && selectedPlayer.hiting ? (
+      {selectedPlayer && selectedPlayer.hiting ? (
         <div className='current-player'>
-          <AvatarPlayer
-            player={selectedPlayer}
-            size='40'
-            onClick={handleClick}
-          />
+          <p>{selectedPlayer.name}</p>
           <div className='bet'>
             <p>$ {selectedPlayer.betAmount}</p>
             <img src={BetMoneyIcon} alt='Bet Money' />

@@ -142,14 +142,13 @@ const BoardPlayer = () => {
   return (
     <div className='row-content'>
       <div className='board-for-playing'>
-        {bank ? <BankCardsPlaying bank={bank} /> : null}
+        {bank && bank.cards && bank.cards.length > 0 ? (
+          <BankCardsPlaying bank={bank} />
+        ) : null}
         {currentPlayer ? (
           <Fragment>
             <div className='deck'>
               <CardDeck cards={currentPlayer.cards} />
-            </div>
-            <div className='current-result'>
-              <IconCurrentResult player={currentPlayer} className='icon' />
             </div>
           </Fragment>
         ) : null}
@@ -166,6 +165,10 @@ const BoardPlayer = () => {
                     size='medium'
                     src={StandHandIcon}
                     onClick={handleStand}
+                  />
+                  <IconCurrentResult
+                    player={currentPlayer}
+                    className='current-play'
                   />
                   <GameButton
                     type='primary'

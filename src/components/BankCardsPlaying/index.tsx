@@ -14,9 +14,7 @@ const BankCardsPlaying = (props: BankCardsPlaying) => {
   return bank ? (
     <div className='bank-cards-playing'>
       <img src={BankIcon} alt='Carta' className='bank-icon' />
-      <div className='deck'>
-        <CardDeck cards={bank.cards} />
-      </div>
+      <CardDeck cards={bank.cards} />
       <div className='bank-result'>
         <IconCurrentResult player={bank} className='bank-result' />
       </div>

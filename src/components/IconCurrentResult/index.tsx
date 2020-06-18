@@ -22,8 +22,10 @@ export const IconCurrentResult = (props: PlayerActionProps) => {
         <img src={HitHandIcon} alt='Hit Hand' className={className} />
       ) : player.standing ? (
         <img src={StandHandIcon} alt='Stand Hand' className={className} />
-      ) : null;
+      ) : (
+        <div className={className} />
+      );
     default:
-      return <div className={className}></div>;
+      return <div className={className} />;
   }
 };

@@ -1,15 +1,13 @@
 .bank-cards-playing {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    width: 100vw;
+    background-color: #484a4d;
 
     .bank-icon {
         height: 40px;
-    }
-
-    .deck {
-        flex: 1;
     }
 
     .bank-result {
