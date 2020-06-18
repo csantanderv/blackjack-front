@@ -18,7 +18,7 @@ export const CurrentPlayer = (props: CurrentPlayerProps) => {
         <div className='current-player'>
           <p>{selectedPlayer.name}</p>
           <div className='bet'>
-            <p>$ {selectedPlayer.betAmount}</p>
+            <p className='player-name'>$ {selectedPlayer.betAmount}</p>
             <img src={BetMoneyIcon} alt='Bet Money' />
           </div>
           <div className='deck'>

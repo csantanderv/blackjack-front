@@ -11,10 +11,10 @@
 }
 
 .nav-item {
-    width: calc(var(--nav-size) * 0.8);
+    flex: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     color: var(--text-color);
     text-decoration: none;
 }

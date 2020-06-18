@@ -48,11 +48,11 @@ const HeaderGameInfo = () => {
             <h2 className='name'>{bank.name}</h2>
             <div className='total-win'>
               <img src={CoinStackIncon} className='icon-lost' alt='Ganado' />
-              <h2 className='mount'>$ {bank.totalAmountWin}</h2>
+              <p className='mount'>$ {bank.totalAmountWin}</p>
             </div>
             <div className='total-lost'>
               <img src={LosingIcon} className='icon-lost' alt='Perdido' />
-              <h2 className='mount'>$ {bank.totalAmountLost}</h2>
+              <p className='mount'>$ {bank.totalAmountLost}</p>
             </div>
           </div>
         </Fragment>
@@ -64,11 +64,11 @@ const HeaderGameInfo = () => {
             <h2 className='name'>{currentPlayer.name}</h2>
             <div className='total-win'>
               <img src={CoinStackIncon} className='icon-lost' alt='Ganado' />
-              <h2 className='mount'>$ {currentPlayer.totalAmountWin}</h2>
+              <p className='mount'>$ {currentPlayer.totalAmountWin}</p>
             </div>
             <div className='total-lost'>
               <img src={LosingIcon} className='icon-lost' alt='Perdido' />
-              <h2 className='mount'>$ {currentPlayer.totalAmountLost}</h2>
+              <p className='mount'>$ {currentPlayer.totalAmountLost}</p>
             </div>
           </div>
         </Fragment>

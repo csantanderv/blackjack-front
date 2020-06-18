@@ -4,9 +4,10 @@ import BetMoneyIcon from '../../assets/svg/bet-money.svg';
 import CardDeck from '../CardDeck';
 import { PlayerType } from '../../state/StoreTypes';
 import CoinStackIncon from '../../assets/svg/coin-stack.svg';
+import { IconCurrentResult } from '../IconCurrentResult';
+import classnames from 'classnames';
 import '../../index.scss';
 import './style.scss';
-import { IconCurrentResult } from '../IconCurrentResult';
 
 type ImgResultProps = {
   player: PlayerType;
@@ -23,7 +24,14 @@ const PlayerMultiplayer = (props: PlayerMultiplayerProps) => {
     onClick(player);
   };
   return (
-    <div className='player-multiplayer' onClick={handleClick}>
+    <div
+      className={classnames({
+        'player-multiplayer': true,
+        'player-hiting': player.hiting,
+        'player-standing': player.standing,
+      })}
+      onClick={handleClick}
+    >
       <CardDeck cards={player.cards} />
       <IconCurrentResult player={player} className='icon-current-result' />
       <div className='detail'>
