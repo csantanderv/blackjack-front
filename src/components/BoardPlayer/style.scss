@@ -14,3 +14,17 @@
     height: 40px;
     width: 40px;
 }
+
+.buttons-playing {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100vw;
+}
+
+.buttons-beting {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100vw;
+}

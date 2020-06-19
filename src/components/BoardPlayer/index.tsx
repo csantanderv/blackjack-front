@@ -164,10 +164,11 @@ const BoardPlayer = () => {
           <IconCurrentResult player={currentPlayer} size='medium' />
         ) : null}
         <UserMsgs msg={msg} show={showMsg} />
-        <div className='game-buttons'>
-          {currentPlayer && currentPlayer.currentResult === 'PLAYING' ? (
-            <Fragment>
-              {started ? (
+
+        {currentPlayer && currentPlayer.currentResult === 'PLAYING' ? (
+          <Fragment>
+            {started ? (
+              <div className='buttons-playing'>
                 <Fragment>
                   <GameButton
                     type='primary'
@@ -183,7 +184,9 @@ const BoardPlayer = () => {
                     onClick={handleHit}
                   />
                 </Fragment>
-              ) : (
+              </div>
+            ) : (
+              <div className='buttons-beting'>
                 <Fragment>
                   <PlayerBet />
                   <GameButton
@@ -193,10 +196,10 @@ const BoardPlayer = () => {
                     onClick={handleBet}
                   />
                 </Fragment>
-              )}
-            </Fragment>
-          ) : null}
-        </div>
+              </div>
+            )}
+          </Fragment>
+        ) : null}
       </div>
     </div>
   );
