@@ -11,13 +11,23 @@ type BankCardsPlaying = {
 
 const BankCardsPlaying = (props: BankCardsPlaying) => {
   const { bank } = props;
+
+  const isGameOver = () => {
+    return (
+      bank &&
+      (bank.currentResult === 'LOSER' || bank.currentResult === 'WINNER')
+    );
+  };
+
   return bank ? (
     <div className='bank-cards-playing'>
       <img src={BankIcon} alt='Carta' className='bank-icon' />
       <CardDeck cards={bank.cards} />
-      <div className='bank-result'>
-        <IconCurrentResult player={bank} className='bank-result' />
-      </div>
+      {isGameOver() ? (
+        <div className='bank-result'>
+          <IconCurrentResult player={bank} size='medium' />
+        </div>
+      ) : null}
     </div>
   ) : null;
 };

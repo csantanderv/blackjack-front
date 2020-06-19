@@ -1,8 +1,8 @@
 import React from 'react';
 import CardDeck from '../CardDeck';
 import BetMoneyIcon from '../../assets/svg/bet-money.svg';
-import './style.scss';
 import { PlayerType } from '../../state/StoreTypes';
+import './style.scss';
 
 type CurrentPlayerProps = {
   selectedPlayer: PlayerType | null;
@@ -16,9 +16,9 @@ export const CurrentPlayer = (props: CurrentPlayerProps) => {
     <div className='current-player-info'>
       {selectedPlayer && selectedPlayer.hiting ? (
         <div className='current-player'>
-          <p>{selectedPlayer.name}</p>
+          <h2 className='player-name'>{selectedPlayer.name}</h2>
           <div className='bet'>
-            <p className='player-name'>$ {selectedPlayer.betAmount}</p>
+            <h2 className='player-name'>$ {selectedPlayer.betAmount}</h2>
             <img src={BetMoneyIcon} alt='Bet Money' />
           </div>
           <div className='deck'>

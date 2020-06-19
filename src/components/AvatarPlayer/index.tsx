@@ -21,7 +21,7 @@ const AvatarPlayer = (props: AvatarPlayerProps) => {
 
   return player ? (
     <div className='avatar-player'>
-      <IconCurrentResult player={player} className='hit-img' />
+      <IconCurrentResult player={player} size='small' />
       <Avatar
         name={player.name}
         round={true}

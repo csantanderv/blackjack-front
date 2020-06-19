@@ -204,6 +204,13 @@ const BoardBank = () => {
     }
   };
 
+  const isGameOver = () => {
+    return (
+      bank &&
+      (bank.currentResult === 'LOSER' || bank.currentResult === 'WINNER')
+    );
+  };
+
   return (
     <Fragment>
       <div className='row-content'>
@@ -213,9 +220,11 @@ const BoardBank = () => {
               <div className='deck'>
                 <CardDeck cards={bank.cards} />
               </div>
-              <div className='current-result'>
-                <IconCurrentResult player={bank} className='icon' />
-              </div>
+              {isGameOver() ? (
+                <div className='current-result'>
+                  <IconCurrentResult player={bank} size='big' />
+                </div>
+              ) : null}
             </Fragment>
           ) : null}
           <CurrentPlayer

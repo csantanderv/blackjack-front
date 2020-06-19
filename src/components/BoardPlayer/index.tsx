@@ -139,6 +139,14 @@ const BoardPlayer = () => {
     }
   };
 
+  const isGameOver = () => {
+    return (
+      currentPlayer &&
+      (currentPlayer.currentResult === 'WINNER' ||
+        currentPlayer.currentResult === 'LOSER')
+    );
+  };
+
   return (
     <div className='row-content'>
       <div className='board-for-playing'>
@@ -152,9 +160,10 @@ const BoardPlayer = () => {
             </div>
           </Fragment>
         ) : null}
-        <div>
-          <UserMsgs msg={msg} show={showMsg} />
-        </div>
+        {currentPlayer && isGameOver() ? (
+          <IconCurrentResult player={currentPlayer} size='medium' />
+        ) : null}
+        <UserMsgs msg={msg} show={showMsg} />
         <div className='game-buttons'>
           {currentPlayer && currentPlayer.currentResult === 'PLAYING' ? (
             <Fragment>
@@ -166,10 +175,7 @@ const BoardPlayer = () => {
                     src={StandHandIcon}
                     onClick={handleStand}
                   />
-                  <IconCurrentResult
-                    player={currentPlayer}
-                    className='current-play'
-                  />
+                  <IconCurrentResult player={currentPlayer} size='medium' />
                   <GameButton
                     type='primary'
                     size='medium'
