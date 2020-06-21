@@ -153,13 +153,6 @@ const BoardPlayer = () => {
         {bank && bank.cards && bank.cards.length > 0 ? (
           <BankCardsPlaying bank={bank} />
         ) : null}
-        {currentPlayer ? (
-          <Fragment>
-            <div className='deck'>
-              <CardDeck cards={currentPlayer.cards} />
-            </div>
-          </Fragment>
-        ) : null}
         {currentPlayer && isGameOver() ? (
           <IconCurrentResult player={currentPlayer} size='medium' />
         ) : null}
@@ -176,7 +169,13 @@ const BoardPlayer = () => {
                     src={StandHandIcon}
                     onClick={handleStand}
                   />
-                  <IconCurrentResult player={currentPlayer} size='medium' />
+                  <div className='current-game'>
+                    <CardDeck
+                      cards={currentPlayer.cards}
+                      totalCards={currentPlayer.totalCards}
+                    />
+                    <IconCurrentResult player={currentPlayer} size='medium' />
+                  </div>
                   <GameButton
                     type='primary'
                     size='medium'

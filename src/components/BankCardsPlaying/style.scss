@@ -11,4 +11,16 @@
     }
 
 
+    .cards-bank {
+        .title-cards-bank {
+            font-size: 10px;
+        }
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+
+
 }

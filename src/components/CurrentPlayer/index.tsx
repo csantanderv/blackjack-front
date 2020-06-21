@@ -22,7 +22,10 @@ export const CurrentPlayer = (props: CurrentPlayerProps) => {
             <img src={BetMoneyIcon} alt='Bet Money' />
           </div>
           <div className='deck'>
-            <CardDeck cards={selectedPlayer.cards} />
+            <CardDeck
+              cards={selectedPlayer.cards}
+              totalCards={selectedPlayer.totalCards}
+            />
           </div>
         </div>
       ) : (

@@ -9,6 +9,7 @@ export type PlayerType = {
   profile: string;
   totalAmountLost: number;
   totalAmountWin: number;
+  totalCards: number;
   hiting: boolean;
   standing: boolean;
   betAmount: number;

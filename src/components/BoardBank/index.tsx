@@ -218,7 +218,7 @@ const BoardBank = () => {
           {bank ? (
             <Fragment>
               <div className='deck'>
-                <CardDeck cards={bank.cards} />
+                <CardDeck cards={bank.cards} totalCards={bank.totalCards} />
               </div>
               {isGameOver() ? (
                 <div className='current-result'>

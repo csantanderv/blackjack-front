@@ -22,7 +22,15 @@ const BankCardsPlaying = (props: BankCardsPlaying) => {
   return bank ? (
     <div className='bank-cards-playing'>
       <img src={BankIcon} alt='Carta' className='bank-icon' />
-      <CardDeck cards={bank.cards} />
+      <div className='cards-bank'>
+        {bank && bank.cards.length > 0 ? (
+          <p className='title-cards-bank'>
+            <strong>Cartas Banca</strong>
+          </p>
+        ) : null}
+        <CardDeck cards={bank.cards} totalCards={bank.totalCards} />
+      </div>
+
       {isGameOver() ? (
         <div className='bank-result'>
           <IconCurrentResult player={bank} size='medium' />

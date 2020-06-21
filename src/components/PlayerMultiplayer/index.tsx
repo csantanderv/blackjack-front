@@ -32,7 +32,7 @@ const PlayerMultiplayer = (props: PlayerMultiplayerProps) => {
       })}
       onClick={handleClick}
     >
-      <CardDeck cards={player.cards} />
+      <CardDeck cards={player.cards} totalCards={player.totalCards} />
       <IconCurrentResult player={player} size='small' />
       <div className='detail'>
         <p>{player.name}</p>

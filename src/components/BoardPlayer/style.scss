@@ -1,6 +1,8 @@
-.deck {
+.current-game {
+    flex: 1;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-content: center;
     flex-flow: row wrap;
 }
 
