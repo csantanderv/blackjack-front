@@ -5,16 +5,17 @@
     align-content: center;
     border: var(--border-gray);
     border-radius: var(--border-radius);
-    background-color: #484a4d;
+    background-color: var(--bg-accent);
     width: 100%;
+    max-width: 370px;
 
     img {
-        width: 10px;
-        height: 10px;
+        width: 20px;
+        height: 20px;
     }
 
     p {
-        font-size: 12px;
-        color: green;
+        font-size: var(--font-size-big);
+        color: var(--alert-color);
     }
 }

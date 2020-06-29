@@ -4,15 +4,28 @@
     justify-content: left;
     align-items: center;
 
+    .bank-connected {
+        display: flex;
+        flex-direction: row;
+        margin-left: var(--margin-big);
+    }
+
+    .player-connected {
+        display: flex;
+        flex-direction: row;
+        margin-left: var(--margin-big);
+    }
+
     .player-info {
         display: flex;
         justify-content: center;
         flex-direction: column;
         width: 100px;
+        margin-left: var(--margin-medium);
 
         .name {
             text-align: center;
-            font-size: 14px;
+            font-size: var(--font-size-medium);
         }
 
         .total-win {
@@ -24,7 +37,7 @@
             .mount {
                 flex: 1;
                 text-align: end;
-                font-size: 12px;
+                font-size: var(--font-size-small);
                 color: green;
             }
         }
@@ -38,7 +51,7 @@
             .mount {
                 flex: 1;
                 text-align: end;
-                font-size: 12px;
+                font-size: var(--font-size-small);
                 color: red;
             }
         }

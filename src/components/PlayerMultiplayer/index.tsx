@@ -9,10 +9,6 @@ import classnames from 'classnames';
 import '../../index.scss';
 import './style.scss';
 
-type ImgResultProps = {
-  player: PlayerType;
-};
-
 type PlayerMultiplayerProps = {
   player: PlayerType;
   onClick(player: PlayerType): void;

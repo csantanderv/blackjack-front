@@ -14,8 +14,7 @@
         background-color: yellow;
 
         p {
-            margin: 0 0 0 0;
-            font-size: 14px;
+            font-size: var(--font-size-medium);
             font-weight: bold;
             color: black;
         }
@@ -38,12 +37,12 @@
     .empty-cards {
         display: flex;
         flex-direction: row;
-        border: var(--border-gray);
-        border-radius: var(--border-radius);
+        padding: var(--padding-small);
+        background-color: var(--bg-accent);
 
         p {
-            font-size: 12px;
-            font-weight: bold;
+            font-size: var(--font-size-small);
+            color: var(--alert-color);
         }
     }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import CardDeck from '../CardDeck';
 import BetMoneyIcon from '../../assets/svg/bet-money.svg';
 import { PlayerType } from '../../state/StoreTypes';
@@ -13,26 +13,27 @@ export const CurrentPlayer = (props: CurrentPlayerProps) => {
   const { selectedPlayer } = props;
 
   return (
-    <div className='current-player-info'>
+    <Fragment>
       {selectedPlayer && selectedPlayer.hiting ? (
-        <div className='current-player'>
-          <h2 className='player-name'>{selectedPlayer.name}</h2>
-          <div className='bet'>
-            <h2 className='player-name'>$ {selectedPlayer.betAmount}</h2>
-            <img src={BetMoneyIcon} alt='Bet Money' />
-          </div>
-          <div className='deck'>
-            <CardDeck
-              cards={selectedPlayer.cards}
-              totalCards={selectedPlayer.totalCards}
-            />
+        <div className='current-player-info'>
+          <div className='current-player'>
+            <div className='player-bet'>
+              <p className='player-name'>{selectedPlayer.name}</p>
+              <div className='bet'>
+                <img src={BetMoneyIcon} alt='Bet Money' />
+                <p>$ {selectedPlayer.betAmount}</p>
+              </div>
+            </div>
+
+            <div className='deck'>
+              <CardDeck
+                cards={selectedPlayer.cards}
+                totalCards={selectedPlayer.totalCards}
+              />
+            </div>
           </div>
         </div>
-      ) : (
-        <div className='msg-no-player'>
-          <p> Selecciona jugador que esté pidiendo </p>
-        </div>
-      )}
-    </div>
+      ) : null}
+    </Fragment>
   );
 };

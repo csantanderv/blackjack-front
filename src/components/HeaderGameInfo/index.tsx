@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, Fragment } from 'react';
+import React, { useContext, useEffect } from 'react';
 import BankIcon from '../../assets/svg/bank.svg';
 import CoinStackIncon from '../../assets/svg/coin-stack.svg';
 import PlayerPlayingIcon from '../../assets/svg/player-playing.svg';
@@ -37,12 +37,10 @@ const HeaderGameInfo = () => {
     }
   }, [socket, connectedUser, dispatch]);
 
-  useEffect(() => {}, [currentPlayer]);
-
   return (
     <div className='game-info'>
       {bank && bank.id !== '' ? (
-        <Fragment>
+        <div className='bank-connected'>
           <img src={BankIcon} alt='Carta' />
           <div className='player-info'>
             <h2 className='name'>{bank.name}</h2>
@@ -55,10 +53,10 @@ const HeaderGameInfo = () => {
               <p className='mount'>$ {bank.totalAmountLost}</p>
             </div>
           </div>
-        </Fragment>
+        </div>
       ) : null}
       {connectedUser && connectedUser.profile === 'PLAYER' && currentPlayer ? (
-        <Fragment>
+        <div className='player-connected'>
           <img src={PlayerPlayingIcon} alt='Carta' />
           <div className='player-info'>
             <h2 className='name'>{currentPlayer.name}</h2>
@@ -71,7 +69,7 @@ const HeaderGameInfo = () => {
               <p className='mount'>$ {currentPlayer.totalAmountLost}</p>
             </div>
           </div>
-        </Fragment>
+        </div>
       ) : null}
     </div>
   );

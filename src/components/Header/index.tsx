@@ -4,8 +4,8 @@ import { Navbar, NavItem } from '../../components/Navbar';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../state/Store';
 import { ActionTypes } from '../../state/StoreTypes';
-import '../../index.scss';
 import HeaderGameInfo from '../HeaderGameInfo';
+import '../../index.scss';
 
 type HeaderProps = {
   onLogout(): void;

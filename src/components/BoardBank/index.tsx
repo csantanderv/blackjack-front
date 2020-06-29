@@ -216,7 +216,11 @@ const BoardBank = () => {
       <div className='row-content'>
         <div className='board-for-playing'>
           {bank ? (
-            <Fragment>
+            <div className='bank-play-info'>
+              <CurrentPlayer
+                selectedPlayer={selectedPlayer}
+                onDeselectPlayer={handleDeselectPlayer}
+              />
               <div className='deck'>
                 <CardDeck cards={bank.cards} totalCards={bank.totalCards} />
               </div>
@@ -225,12 +229,8 @@ const BoardBank = () => {
                   <IconCurrentResult player={bank} size='big' />
                 </div>
               ) : null}
-            </Fragment>
+            </div>
           ) : null}
-          <CurrentPlayer
-            selectedPlayer={selectedPlayer}
-            onDeselectPlayer={handleDeselectPlayer}
-          />
           <UserMsgs msg={msg} show={showMsg} />
           <div className='game-buttons'>
             {started ? (

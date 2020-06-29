@@ -1,11 +1,11 @@
 .player-multiplayer {
-    margin: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border: var(--border-gray);
     border-radius: var(--border-radius);
+    padding: var(--padding-medium);
 
 
     .detail {
@@ -14,8 +14,11 @@
         justify-content: space-around;
         align-items: stretch;
 
+
         p {
             font-weight: bold;
+            font-size: var(--font-size-medium);
+            padding: var(--padding-medium);
         }
 
         img {
@@ -39,7 +42,7 @@
             text-align: end;
             color: green;
             font-weight: bold;
-            font-size: 12px;
+            font-size: var(--font-size-small);
         }
 
     }
@@ -53,10 +56,9 @@
         p {
             flex: 1;
             text-align: end;
-
             color: red;
             font-weight: bold;
-            font-size: 12px;
+            font-size: var(--font-size-small);
         }
 
         img {

@@ -3,7 +3,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #484a4d;
+    background-color: var(--bg-accent);
+    margin: var(--margin-small);
+    padding: var(--padding-small);
 
     .current-player {
         display: flex;
@@ -13,37 +15,41 @@
         flex-wrap: wrap;
         width: 100%;
 
+        .player-bet {
+            display: flex;
+            flex-direction: column;
+            padding: var(--padding-small);
+        }
+
         .player-name {
-            font-size: 14px;
+            font-size: var(--font-size-small);
             font-weight: bold;
+            text-align: center;
         }
 
         .bet {
+            width: 100%;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            flex-direction: row;
+            align-items: center;
 
             p {
-                font-size: 12px;
-                font-weight: bold;
+                flex: 1;
+                text-align: end;
                 color: green;
+                font-weight: bold;
+                font-size: 12px;
             }
 
             img {
-                height: 30px;
+                height: 20px;
             }
         }
 
         .deck {
-            flex: 1;
+            padding: var(--padding-small);
         }
     }
 
-    .msg-no-player {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-content: center;
-    }
 
 }
