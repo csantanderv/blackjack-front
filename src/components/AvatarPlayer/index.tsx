@@ -2,7 +2,7 @@ import React from 'react';
 import Avatar from 'react-avatar';
 import { PlayerType } from '../../state/StoreTypes';
 import { IconCurrentResult } from '../IconCurrentResult';
-import '../../index.scss';
+import '../../style.scss';
 import './style.scss';
 
 type AvatarPlayerProps = {

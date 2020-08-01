@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import '../../index.scss';
+import '../../style.scss';
 import './style.scss';
 
 type GameButtonProps = {

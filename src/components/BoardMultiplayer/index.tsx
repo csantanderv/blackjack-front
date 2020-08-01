@@ -3,7 +3,7 @@ import PlayerMultiplayer from '../PlayerMultiplayer';
 import { AppContext } from '../../state/Store';
 import { EventTypes } from '../../services/socket/EventTypes';
 import { ActionTypes, PlayerType } from '../../state/StoreTypes';
-import '../../index.scss';
+import '../../style.scss';
 import './style.scss';
 
 const BoardMultiplayer = () => {
@@ -11,7 +11,7 @@ const BoardMultiplayer = () => {
   const { socket, players } = state;
 
   useEffect(() => {
-    if (socket !== null) {
+    if (socket) {
       socket.on(EventTypes.SetPlayers, (data: any) => {
         dispatch({
           type: ActionTypes.SetPlayers,
@@ -39,56 +39,6 @@ const BoardMultiplayer = () => {
   ) : (
     <div className='row-content multiplayer-row'>
       <div className='board-multiplayer'>
-        {players.map((player, index) => {
-          return (
-            <PlayerMultiplayer
-              key={index}
-              player={player}
-              onClick={handlePlayer}
-            />
-          );
-        })}
-
-        {players.map((player, index) => {
-          return (
-            <PlayerMultiplayer
-              key={index}
-              player={player}
-              onClick={handlePlayer}
-            />
-          );
-        })}
-
-        {players.map((player, index) => {
-          return (
-            <PlayerMultiplayer
-              key={index}
-              player={player}
-              onClick={handlePlayer}
-            />
-          );
-        })}
-
-        {players.map((player, index) => {
-          return (
-            <PlayerMultiplayer
-              key={index}
-              player={player}
-              onClick={handlePlayer}
-            />
-          );
-        })}
-
-        {players.map((player, index) => {
-          return (
-            <PlayerMultiplayer
-              key={index}
-              player={player}
-              onClick={handlePlayer}
-            />
-          );
-        })}
-
         {players.map((player, index) => {
           return (
             <PlayerMultiplayer

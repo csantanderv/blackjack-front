@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { CardValue } from '../../config/Config';
 import ArrowIncon from '../../assets/svg/arrow.svg';
-import '../../index.scss';
+import '../../style.scss';
 import './style.scss';
 
 type CarType = {

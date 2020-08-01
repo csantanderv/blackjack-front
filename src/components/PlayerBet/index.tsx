@@ -3,7 +3,7 @@ import PlusIcon from '../../assets/svg/plus.svg';
 import RestIcon from '../../assets/svg/rest.svg';
 import { AppContext } from '../../state/Store';
 import { ActionTypes } from '../../state/StoreTypes';
-import '../../index.scss';
+import '../../style.scss';
 import './style.scss';
 import GameButton from '../GameButton';
 
@@ -40,11 +40,9 @@ const PlayerBet = () => {
           handleChange(100);
         }}
       />
-
       <div className='bet-amount'>
         <h1>$ {currentPlayer.betAmount}</h1>
       </div>
-
       <GameButton
         type='primary'
         size='small'

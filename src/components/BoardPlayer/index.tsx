@@ -12,7 +12,7 @@ import { IconCurrentResult } from '../IconCurrentResult';
 import BankCardsPlaying from '../BankCardsPlaying';
 import UserMsgs from '../UserMsgs';
 import useShowMsg from '../../services/hooks/useShowMsg';
-import '../../index.scss';
+import '../../style.scss';
 import './style.scss';
 
 const BoardPlayer = () => {
@@ -139,13 +139,10 @@ const BoardPlayer = () => {
     }
   };
 
-  const isGameOver = () => {
-    return (
-      currentPlayer &&
-      (currentPlayer.currentResult === 'WINNER' ||
-        currentPlayer.currentResult === 'LOSER')
-    );
-  };
+  const isGameOver =
+    currentPlayer &&
+    (currentPlayer.currentResult === 'WINNER' ||
+      currentPlayer.currentResult === 'LOSER');
 
   return (
     <div className='row-content'>
@@ -153,7 +150,7 @@ const BoardPlayer = () => {
         {bank && bank.cards && bank.cards.length > 0 ? (
           <BankCardsPlaying bank={bank} />
         ) : null}
-        {currentPlayer && isGameOver() ? (
+        {currentPlayer && isGameOver ? (
           <IconCurrentResult player={currentPlayer} size='medium' />
         ) : null}
         <UserMsgs msg={msg} show={showMsg} />

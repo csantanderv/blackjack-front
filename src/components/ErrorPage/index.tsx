@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../state/Store';
-import '../../index.scss';
+import '../../style.scss';
 
 const ErrorPage = () => {
   const { state } = useContext(AppContext);

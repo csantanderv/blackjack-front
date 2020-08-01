@@ -5,7 +5,7 @@ import { AppProvider } from './state/Store';
 import BlackJackBoard from './BlackJackBoard';
 import NotFound from './components/NotFound';
 import ErrorPage from './components/ErrorPage';
-import './index.scss';
+import './style.scss';
 
 function App() {
   return (

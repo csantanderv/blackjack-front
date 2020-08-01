@@ -10,7 +10,7 @@ import { useGetUser } from './services/hooks/useGetUser';
 import { useSocket } from './services/hooks/useSocket';
 import { EventTypes } from './services/socket/EventTypes';
 import { ToastMsg, dispatchToast } from './utils/ToastUtils';
-import './index.scss';
+import './style.scss';
 
 const BlackJackBoard = (props: any) => {
   const { state, dispatch } = useContext(AppContext);
@@ -94,10 +94,6 @@ const BlackJackBoard = (props: any) => {
           dispatchToast(data.name + ' se ha conectado');
         }
       });
-      /*       socket.on(EventTypes.Disconnected, (data: any) => {
-        dispatchToast(data);
-      });
- */
     }
   }, [socket, dispatch, state.currentPlayer]);
 

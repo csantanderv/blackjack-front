@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../state/Store';
 import { ActionTypes } from '../../state/StoreTypes';
 import HeaderGameInfo from '../HeaderGameInfo';
-import '../../index.scss';
+import '../../style.scss';
 
 type HeaderProps = {
   onLogout(): void;

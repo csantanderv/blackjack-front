@@ -4,8 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../state/Store';
 import { ActionTypes } from '../../state/StoreTypes';
 import { useLoginUser } from '../../services/hooks/useLoginUser';
-import '../../index.scss';
-import '../../input.scss';
+import '../../style.scss';
 import './style.scss';
 
 const LoginPage = () => {
@@ -97,7 +96,7 @@ const LoginPage = () => {
               />
               {msgError !== '' ? <p>{msgError}</p> : null}
               <button className='btn-grid' type='button' onClick={handleClick}>
-                <span className='front'>Ingresar</span>
+                <span>Ingresar</span>
               </button>
             </div>
           </form>

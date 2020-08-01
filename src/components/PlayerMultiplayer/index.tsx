@@ -6,7 +6,7 @@ import { PlayerType } from '../../state/StoreTypes';
 import CoinStackIncon from '../../assets/svg/coin-stack.svg';
 import { IconCurrentResult } from '../IconCurrentResult';
 import classnames from 'classnames';
-import '../../index.scss';
+import '../../style.scss';
 import './style.scss';
 
 type PlayerMultiplayerProps = {

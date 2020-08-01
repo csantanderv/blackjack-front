@@ -12,7 +12,7 @@ import { EventTypes } from '../../services/socket/EventTypes';
 import { IconCurrentResult } from '../IconCurrentResult';
 import useShowMsg from '../../services/hooks/useShowMsg';
 import UserMsgs from '../UserMsgs';
-import '../../index.scss';
+import '../../style.scss';
 import './style.scss';
 
 const BoardBank = () => {
@@ -204,12 +204,8 @@ const BoardBank = () => {
     }
   };
 
-  const isGameOver = () => {
-    return (
-      bank &&
-      (bank.currentResult === 'LOSER' || bank.currentResult === 'WINNER')
-    );
-  };
+  const isGameOver =
+    bank && (bank.currentResult === 'LOSER' || bank.currentResult === 'WINNER');
 
   return (
     <Fragment>
@@ -224,7 +220,7 @@ const BoardBank = () => {
               <div className='deck'>
                 <CardDeck cards={bank.cards} totalCards={bank.totalCards} />
               </div>
-              {isGameOver() ? (
+              {isGameOver ? (
                 <div className='current-result'>
                   <IconCurrentResult player={bank} size='big' />
                 </div>
