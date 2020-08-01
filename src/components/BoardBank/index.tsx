@@ -1,4 +1,4 @@
-import React, { useContext, Fragment, useEffect } from 'react';
+import React, { useContext, Fragment } from 'react';
 import HitHandIcon from '../../assets/svg/hit-hand.svg';
 import GivecCardIcon from '../../assets/svg/give-card.svg';
 import PlayIcon from '../../assets/svg/play.svg';
@@ -8,17 +8,18 @@ import { CurrentPlayer } from '../CurrentPlayer';
 import { AppContext } from '../../state/Store';
 import CardDeck from '../CardDeck';
 import { ActionTypes } from '../../state/StoreTypes';
-import { EventTypes } from '../../services/socket/EventTypes';
 import { IconCurrentResult } from '../IconCurrentResult';
 import useShowMsg from '../../services/hooks/useShowMsg';
 import UserMsgs from '../UserMsgs';
+import useBankMoves from '../../services/hooks/useBankMoves';
 import '../../style.scss';
 import './style.scss';
 
 const BoardBank = () => {
   const { state, dispatch } = useContext(AppContext);
   const [showMsg, msg, setUserMsg] = useShowMsg();
-  const { bank, players, socket, started, selectedPlayer } = state;
+  const { bank, players, started, selectedPlayer } = state;
+  const [playCard, hitCard, giveCard, shuffleCards] = useBankMoves();
 
   const handleDeselectPlayer = () => {
     dispatch({
@@ -28,49 +29,6 @@ const BoardBank = () => {
       },
     });
   };
-
-  useEffect(() => {
-    if (socket !== null) {
-      socket.on(EventTypes.SetPlayers, (data: any) => {
-        dispatch({
-          type: ActionTypes.SetPlayers,
-          payload: {
-            players: data,
-          },
-        });
-        dispatch({
-          type: ActionTypes.SetSelectedPlayer,
-          payload: {
-            selectedPlayer: null,
-          },
-        });
-      });
-      socket.on(EventTypes.SetBank, (data: any) => {
-        dispatch({
-          type: ActionTypes.SetBank,
-          payload: {
-            bank: data,
-          },
-        });
-      });
-      socket.on(EventTypes.GameStarted, (data: any) => {
-        dispatch({
-          type: ActionTypes.SetStarted,
-          payload: {
-            started: true,
-          },
-        });
-      });
-      socket.on(EventTypes.GameFinished, (data: any) => {
-        dispatch({
-          type: ActionTypes.SetStarted,
-          payload: {
-            started: false,
-          },
-        });
-      });
-    }
-  }, [socket, dispatch]);
 
   const validatePlay = () => {
     if (players) {
@@ -124,7 +82,7 @@ const BoardBank = () => {
       return '';
     }
   };
-  // TODO: validar que los jugadores standing tengan cartas <= al límite de jugador (16?)
+
   const validateGiveCard = () => {
     if (bank && selectedPlayer) {
       if (!selectedPlayer.hiting) {
@@ -149,7 +107,6 @@ const BoardBank = () => {
   };
 
   const validateShuffle = () => {
-    // TODO: Falta validar cuando la banca gana y los jugadores quedan en estado PLAYING, en ese caso la weá caga porque no se puede entregar la carta pa terminar con el juego
     const isSomeonePlaying =
       players.findIndex((item) => item.currentResult === 'PLAYING') !== -1;
 
@@ -161,11 +118,11 @@ const BoardBank = () => {
   };
 
   const handlePlay = () => {
-    if (socket && players && players.length > 0) {
+    if (players && players.length > 0) {
       const validMsg = validatePlay();
       setUserMsg(validMsg);
       if (validMsg === '') {
-        socket.emit(EventTypes.NewGame);
+        playCard();
       }
     } else {
       setUserMsg('Falta que se conecten los jugadores');
@@ -173,21 +130,21 @@ const BoardBank = () => {
   };
 
   const handleHit = () => {
-    if (bank && socket) {
+    if (bank) {
       const validMsg = validateHit();
       setUserMsg(validMsg);
       if (validMsg === '') {
-        socket.emit(EventTypes.BankHit);
+        hitCard();
       }
     }
   };
 
   const handleGiveCard = () => {
-    if (selectedPlayer && socket) {
+    if (selectedPlayer) {
       const validMsg = validateGiveCard();
       setUserMsg(validMsg);
       if (validMsg === '') {
-        socket.emit(EventTypes.GiveCard, selectedPlayer);
+        giveCard(selectedPlayer);
       }
     } else {
       setUserMsg('Selecciona un jugador primero');
@@ -195,12 +152,10 @@ const BoardBank = () => {
   };
 
   const handleShuffleCards = () => {
-    if (socket) {
-      const validMsg = validateShuffle();
-      setUserMsg(validMsg);
-      if (validMsg === '') {
-        socket.emit(EventTypes.ResetGame);
-      }
+    const validMsg = validateShuffle();
+    setUserMsg(validMsg);
+    if (validMsg === '') {
+      shuffleCards();
     }
   };
 

@@ -7,64 +7,19 @@ import PlayerBet from '../PlayerBet';
 import GameButton from '../GameButton';
 import { AppContext } from '../../state/Store';
 import { ActionTypes, PlayerType } from '../../state/StoreTypes';
-import { EventTypes } from '../../services/socket/EventTypes';
 import { IconCurrentResult } from '../IconCurrentResult';
 import BankCardsPlaying from '../BankCardsPlaying';
 import UserMsgs from '../UserMsgs';
 import useShowMsg from '../../services/hooks/useShowMsg';
+import usePlayerMoves from '../../services/hooks/usePlayerMoves';
 import '../../style.scss';
 import './style.scss';
 
 const BoardPlayer = () => {
   const { state, dispatch } = useContext(AppContext);
   const [showMsg, msg, setUserMsg] = useShowMsg();
-  const {
-    connectedUser,
-    players,
-    currentPlayer,
-    bank,
-    socket,
-    started,
-  } = state;
-
-  useEffect(() => {
-    if (socket) {
-      socket.on(EventTypes.SetPlayers, (data: any) => {
-        if (data) {
-          dispatch({
-            type: ActionTypes.SetPlayers,
-            payload: {
-              players: data,
-            },
-          });
-        }
-      });
-      socket.on(EventTypes.SetBank, (data: any) => {
-        dispatch({
-          type: ActionTypes.SetBank,
-          payload: {
-            bank: data,
-          },
-        });
-      });
-      socket.on(EventTypes.GameStarted, (data: any) => {
-        dispatch({
-          type: ActionTypes.SetStarted,
-          payload: {
-            started: true,
-          },
-        });
-      });
-      socket.on(EventTypes.GameFinished, (data: any) => {
-        dispatch({
-          type: ActionTypes.SetStarted,
-          payload: {
-            started: false,
-          },
-        });
-      });
-    }
-  }, [socket, dispatch]);
+  const [stand, bet, hit] = usePlayerMoves();
+  const { connectedUser, players, currentPlayer, bank, started } = state;
 
   useEffect(() => {
     if (players && connectedUser) {
@@ -95,11 +50,11 @@ const BoardPlayer = () => {
   };
 
   const handleStand = () => {
-    if (currentPlayer && socket) {
+    if (currentPlayer) {
       const validMsg = validatePlay();
       if (validMsg === '') {
         setUserMsg('');
-        socket.emit(EventTypes.PlayerStand, currentPlayer);
+        stand(currentPlayer);
       } else {
         setUserMsg(validMsg);
       }
@@ -116,11 +71,11 @@ const BoardPlayer = () => {
   };
 
   const handleBet = () => {
-    if (currentPlayer && socket) {
+    if (currentPlayer) {
       const validMsg = validateBet();
       if (validMsg === '') {
         setUserMsg('');
-        socket.emit(EventTypes.PlayerBet, currentPlayer);
+        bet(currentPlayer);
       } else {
         setUserMsg(validMsg);
       }
@@ -128,10 +83,10 @@ const BoardPlayer = () => {
   };
 
   const handleHit = () => {
-    if (currentPlayer && socket) {
+    if (currentPlayer) {
       const validMsg = validatePlay();
       if (validMsg === '') {
-        socket.emit(EventTypes.PlayerHit, currentPlayer);
+        hit(currentPlayer);
         setUserMsg('');
       } else {
         setUserMsg(validMsg);

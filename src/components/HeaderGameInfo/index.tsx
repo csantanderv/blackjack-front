@@ -12,8 +12,6 @@ const HeaderGameInfo = () => {
   const { state, dispatch } = useContext(AppContext);
   const { bank, connectedUser, currentPlayer, socket } = state;
 
-  useEffect(() => {}, [connectedUser, bank]);
-
   useEffect(() => {
     if (socket && connectedUser && connectedUser.profile === 'PLAYER') {
       socket.on(EventTypes.SetBank, (data: any) => {

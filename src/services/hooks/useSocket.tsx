@@ -15,7 +15,6 @@ export const useSocket = (
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
   const [error, setError] = useState('');
 
-  //TODO: falta agregar el socket para la authentiacion
   const setSocketPlayer = (player: PlayerUseSocketProps) => {
     setUser(player);
   };

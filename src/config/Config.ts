@@ -2,8 +2,6 @@ const ConfigApp = {
   backendUrl: 'http://localhost:3002',
 };
 
-export default ConfigApp;
-
 export const CardValue = [
   { card: '0C', value: '10' },
   { card: '0S', value: '10' },
@@ -58,3 +56,5 @@ export const CardValue = [
   { card: 'KS', value: '10' },
   { card: 'QH', value: '10' },
 ];
+
+export default ConfigApp;

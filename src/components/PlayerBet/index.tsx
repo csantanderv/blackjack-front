@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import PlusIcon from '../../assets/svg/plus.svg';
 import RestIcon from '../../assets/svg/rest.svg';
 import { AppContext } from '../../state/Store';
@@ -11,10 +11,7 @@ const PlayerBet = () => {
   const { state, dispatch } = useContext(AppContext);
   const { currentPlayer } = state;
 
-  useEffect(() => {}, [currentPlayer]);
-
   const handleChange = (delta: number) => {
-    //TODO: Se debe cambiar le 100 por un delta configurable
     if (currentPlayer) {
       if (currentPlayer.betAmount + delta >= 0) {
         dispatch({
