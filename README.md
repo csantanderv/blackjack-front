@@ -6,14 +6,19 @@ Multiplayer game based on the blackjack casino game. You can play with 2 differe
 
 ### Installing
 
-```
-npm install
-npm run
+```bash
+# Install
+$ npm install
+
+# Run
+$ npm run
 ```
 
 Then you have to change this value with your backend URL
 
-```
+```bash
+# src/config/Config.ts
+
 const ConfigApp = {
   backendUrl: 'http://localhost:3002',
 };
@@ -27,7 +32,7 @@ const ConfigApp = {
 
 ## Authors
 
-- \*\*Carlos Santander - Full Stack Developer - [PurpleBooth](https://github.com/csantanderv)
+- Carlos Santander - Full Stack Developer - [PurpleBooth](https://github.com/csantanderv)
 
 ## License
 
