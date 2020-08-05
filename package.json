@@ -1,6 +1,6 @@
 {
-  "name": "full-layout",
-  "version": "0.1.0",
+  "name": "blackjack-front",
+  "version": "1.o",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
