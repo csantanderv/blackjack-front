@@ -32,8 +32,8 @@ const ConfigApp = {
 
 ## Authors
 
-- Carlos Santander - Full Stack Developer - [PurpleBooth](https://github.com/csantanderv)
+- Carlos Santander - Full Stack Developer.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
